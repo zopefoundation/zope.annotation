@@ -13,7 +13,7 @@
 ##############################################################################
 """Annotations store arbitrary application data under package-unique keys.
 
-$Id: interfaces.py,v 1.1 2004/03/13 23:00:39 srichter Exp $
+$Id$
 """
 from zope.interface import Interface
 

@@ -13,7 +13,7 @@
 ##############################################################################
 """Attribute Annotations implementation 
 
-$Id: attribute.py,v 1.1 2004/03/13 23:00:39 srichter Exp $
+$Id$
 """
 from BTrees.OOBTree import OOBTree
 from interfaces import IAnnotations, IAttributeAnnotatable

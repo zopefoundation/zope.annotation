@@ -13,7 +13,7 @@
 ##############################################################################
 """Annotation (meta data) support
 
-$Id: __init__.py,v 1.2 2004/03/21 11:35:15 jim Exp $
+$Id$
 """
 
 from zope.app.annotation.interfaces import IAttributeAnnotatable

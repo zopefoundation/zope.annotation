@@ -13,7 +13,7 @@
 ##############################################################################
 """Tests the 'AttributeAnnotations' adapter.
 
-$Id: test_attributeannotations.py,v 1.1 2004/03/13 23:00:39 srichter Exp $
+$Id$
 """
 from unittest import main, makeSuite
 from zope.testing.cleanup import CleanUp # Base class w registry cleanup

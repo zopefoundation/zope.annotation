@@ -16,7 +16,7 @@
 All objects implementing 'IAnnotations' should pass these tests. They might be
 used as base tests for real implementations.
 
-$Id: annotations.py,v 1.1 2004/03/13 23:00:39 srichter Exp $
+$Id$
 """
 import unittest
 from zope.interface.verify import verifyObject
