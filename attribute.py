@@ -11,18 +11,15 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Attribute Annotations implementation 
+"""Attribute Annotations implementation
 
 $Id$
 """
 __docformat__ = 'restructuredtext'
 
 from UserDict import DictMixin
-
 from BTrees.OOBTree import OOBTree
-
 from zope.interface import implements
-
 from interfaces import IAnnotations, IAttributeAnnotatable
 
 
@@ -34,7 +31,7 @@ class AttributeAnnotations(DictMixin):
     __used_for__ = IAttributeAnnotatable
 
     def __init__(self, obj):
-        self.obj = obj        
+        self.obj = obj
 
     def __nonzero__(self):
         return bool(getattr(self.obj, '__annotations__', 0))
@@ -53,17 +50,16 @@ class AttributeAnnotations(DictMixin):
             raise KeyError, key
 
         return annotations[key]
-        
+
     def keys(self):
         annotations = getattr(self.obj, '__annotations__', None)
         if annotations is None:
             return []
 
         return annotations.keys()
-    
+
     def __setitem__(self, key, value):
         """See zope.app.annotation.interfaces.IAnnotations"""
-        
         try:
             annotations = self.obj.__annotations__
         except AttributeError:
