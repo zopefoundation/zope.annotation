@@ -36,6 +36,9 @@ class AttributeAnnotations(DictMixin):
     def __init__(self, obj):
         self.obj = obj        
 
+    def __nonzero__(self):
+        return bool(getattr(self.obj, '__annotations__', 0))
+
     def get(self, key, default=None):
         """See zope.app.annotation.interfaces.IAnnotations"""
         annotations = getattr(self.obj, '__annotations__', None)

@@ -32,6 +32,13 @@ class IAnnotationsTest(unittest.TestCase):
     def setUp(self):
         self.obj = {1:2, 3:4}
 
+    def test_nonzero(self):
+        self.failIf(self.annotations)
+        self.annotations['unittest'] = self.obj
+        self.failUnless(self.annotations)
+        del self.annotations['unittest']
+        self.failIf(self.annotations)        
+
     def testInterfaceVerifies(self):
         verifyObject(IAnnotations, self.annotations)
 
