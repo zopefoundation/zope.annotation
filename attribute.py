@@ -15,6 +15,7 @@
 
 $Id$
 """
+__docformat__ = 'restructuredtext'
 
 from UserDict import DictMixin
 
@@ -26,8 +27,8 @@ from interfaces import IAnnotations, IAttributeAnnotatable
 
 
 class AttributeAnnotations(DictMixin):
-    """Store annotations in the __annotations__ attribute on a
-       'IAttributeAnnotatable' object.
+    """Store annotations in the `__annotations__` attribute on a
+       `IAttributeAnnotatable` object.
     """
     implements(IAnnotations)
     __used_for__ = IAttributeAnnotatable
