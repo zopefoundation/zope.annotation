@@ -15,6 +15,7 @@
 
 $Id$
 """
+__docformat__ = 'restructuredtext'
 
 from UserDict import DictMixin
 
@@ -26,14 +27,17 @@ from interfaces import IAnnotations, IAttributeAnnotatable
 
 
 class AttributeAnnotations(DictMixin):
-    """Store annotations in the __annotations__ attribute on a
-       'IAttributeAnnotatable' object.
+    """Store annotations in the `__annotations__` attribute on a
+       `IAttributeAnnotatable` object.
     """
     implements(IAnnotations)
     __used_for__ = IAttributeAnnotatable
 
     def __init__(self, obj):
         self.obj = obj        
+
+    def __nonzero__(self):
+        return bool(getattr(self.obj, '__annotations__', 0))
 
     def get(self, key, default=None):
         """See zope.app.annotation.interfaces.IAnnotations"""
