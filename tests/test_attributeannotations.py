@@ -22,7 +22,7 @@ from zope.app.annotation.attribute import AttributeAnnotations
 from zope.app.annotation.interfaces import IAttributeAnnotatable
 from zope.interface import implements
 
-class Dummy:
+class Dummy(object):
     implements(IAttributeAnnotatable)
 
 class AttributeAnnotationsTest(IAnnotationsTest, CleanUp):
