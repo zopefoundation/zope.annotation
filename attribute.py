@@ -19,16 +19,19 @@ __docformat__ = 'restructuredtext'
 
 from UserDict import DictMixin
 from BTrees.OOBTree import OOBTree
-from zope.interface import implements
-from interfaces import IAnnotations, IAttributeAnnotatable
 
+from zope import component, interface
+
+from zope.app.annotation import interfaces
 
 class AttributeAnnotations(DictMixin):
-    """Store annotations in the `__annotations__` attribute on a
-       `IAttributeAnnotatable` object.
+    """Store annotations on an object
+
+    Store annotations in the `__annotations__` attribute on a
+    `IAttributeAnnotatable` object.
     """
-    implements(IAnnotations)
-    __used_for__ = IAttributeAnnotatable
+    interface.implements(interfaces.IAnnotations)
+    component.adapts(interfaces.IAttributeAnnotatable)
 
     def __init__(self, obj):
         self.obj = obj
