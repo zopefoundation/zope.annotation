@@ -50,7 +50,7 @@ class AttributeAnnotations(DictMixin):
     def __getitem__(self, key):
         annotations = getattr(self.obj, '__annotations__', None)
         if annotations is None:
-            raise KeyError, key
+            raise KeyError(key)
 
         return annotations[key]
 
@@ -75,6 +75,6 @@ class AttributeAnnotations(DictMixin):
         try:
             annotation = self.obj.__annotations__
         except AttributeError:
-            raise KeyError, key
+            raise KeyError(key)
 
         del annotation[key]
