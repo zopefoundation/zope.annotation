@@ -22,10 +22,10 @@ import unittest
 from zope.interface.verify import verifyObject
 from zope.app.annotation.interfaces import IAnnotations
 
-class IAnnotationsTest(unittest.TestCase):
+class AnnotationsTest(unittest.TestCase):
     """Test the IAnnotations interface.
 
-    The test case class expects the 'IAnnotations' to be in
+    The test case class expects the 'IAnnotations' implementer to be in
     'self.annotations'.
     """
 

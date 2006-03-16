@@ -11,29 +11,45 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Tests the 'AttributeAnnotations' adapter.
+"""Tests the 'AttributeAnnotations' adapter. Also test the annotation
+factory.
 
 $Id$
 """
-from unittest import main, makeSuite
-from zope.testing.cleanup import CleanUp # Base class w registry cleanup
-from zope.app.annotation.tests.annotations import IAnnotationsTest
+import unittest, doctest
+from zope.testing import cleanup
+from zope.app.annotation.tests.annotations import AnnotationsTest
 from zope.app.annotation.attribute import AttributeAnnotations
 from zope.app.annotation.interfaces import IAttributeAnnotatable
 from zope.interface import implements
+from zope import component
 
 class Dummy(object):
     implements(IAttributeAnnotatable)
 
-class AttributeAnnotationsTest(IAnnotationsTest, CleanUp):
+class AttributeAnnotationsTest(AnnotationsTest, cleanup.CleanUp):
 
     def setUp(self):
         self.annotations = AttributeAnnotations(Dummy())
         super(AttributeAnnotationsTest, self).setUp()
 
 
+def setUp(test=None):
+    cleanup.setUp()
+    component.provideAdapter(AttributeAnnotations)
+    
+def tearDown(test=None):
+    cleanup.tearDown()
+    
 def test_suite():
-    return makeSuite(AttributeAnnotationsTest)
+    return unittest.TestSuite((
+        unittest.makeSuite(AttributeAnnotationsTest),
+        doctest.DocFileSuite('../README.txt', setUp=setUp, tearDown=tearDown)
+        ))
+
+    #return makeSuite(AttributeAnnotationsTest)
+    #    doctest.DocFileSuite('README.txt',
+    #                         setUp=setUp, tearDown=tearDown),
 
 if __name__=='__main__':
-    main(defaultTest='test_suite')
+    unittest.main(defaultTest='test_suite')
