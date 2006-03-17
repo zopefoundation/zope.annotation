@@ -27,4 +27,7 @@ def factory(factory, key=None):
             zope.app.container.contained.contained(
                 result, context, key)
             return result
+
+    # Convention to make adapter introspectable, used by apidoc
+    getAnnotation.factory = factory 
     return getAnnotation
