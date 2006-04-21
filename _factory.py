@@ -1,7 +1,27 @@
+##############################################################################
+#
+# Copyright (c) 2006 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+"""Adapter factory.
+
+$Id$
+"""
+__docformat__ = 'restructuredtext'
+
 import zope.component
 import zope.interface
 from zope.app.annotation.interfaces import IAnnotations
 import zope.app.container.contained
+
 
 def factory(factory, key=None):
     """Adapter factory to help create annotations easily.
@@ -29,5 +49,5 @@ def factory(factory, key=None):
             return result
 
     # Convention to make adapter introspectable, used by apidoc
-    getAnnotation.factory = factory 
+    getAnnotation.factory = factory
     return getAnnotation
