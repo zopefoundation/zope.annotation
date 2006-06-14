@@ -4,7 +4,7 @@ Annotations
 There is more to document about annotations, but we'll just sketch out
 a scenario on how to use the annotation factory for now. This is one
 of the easiest ways to use annotations -- basically you can see them
-as persistent, writeable adapters.
+as persistent, writable adapters.
 
 First, let's make a persistent object we can create annotations for:
 
@@ -36,7 +36,7 @@ Now let's create an annotation for this:
 Note that the annotation implementation does not expect any arguments
 to its `__init__`. Otherwise it's basically an adapter.
 
-Now, we'll register the annotation as an adapter. Do do this we use
+Now, we'll register the annotation as an adapter. To do this we use
 the `factory` function provided by `zope.annotation`:
 
   >>> from zope.annotation import factory
@@ -80,7 +80,7 @@ What if our annotation does not provide what it adapts with
   TypeError: Missing 'zope.component.adapts' on annotation
 
 It's possible to provide an annotation with an explicit key. (If the
-key is not supplied, the key is deduced from the anotation's dotted
+key is not supplied, the key is deduced from the annotation's dotted
 name, provided it is a class.)
 
   >>> class IHoi(interface.Interface):
