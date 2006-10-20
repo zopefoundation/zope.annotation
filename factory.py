@@ -37,13 +37,16 @@ def factory(factory, key=None):
     def getAnnotation(context):
         annotations = IAnnotations(context)
         try:
-            return annotations[key]
+            result = annotations[key]
         except KeyError:
             result = factory()
             annotations[key] = result
-            zope.app.container.contained.contained(
-                result, context, key)
-            return result
+        # Containment has to be set up late to allow containment proxies
+        # to be applied, if needed. This does not trigger an event and is idempotent
+        # if containment is set up already.
+        contained_result = zope.app.container.contained.contained(
+            result, context, key)
+        return contained_result
 
     # Convention to make adapter introspectable, used by apidoc
     getAnnotation.factory = factory 

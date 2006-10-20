@@ -45,7 +45,7 @@ the `factory` function provided by `zope.annotation`:
 Note that we do not need to specify what the adapter provides or what
 it adapts - we already do this on the annotation class itself.
 
-Now we let's make an instance of `Foo`, and make an annotation for it.
+Now let's make an instance of `Foo`, and make an annotation for it.
 
   >>> foo = Foo()
   >>> bar = IBar(foo)
@@ -92,3 +92,29 @@ name, provided it is a class.)
   >>> isinstance(IHoi(foo), Hoi)
   True
 
+Containment
+-----------
+
+Annotation factories are put into the containment hierarchy with their parent
+pointing to the annotated object and the name to the dotted name of the
+annotation's class (or the name the adapter was registered under):
+
+  >>> foo3 = Foo()
+  >>> new_hoi = IHoi(foo3)
+  >>> new_hoi.__parent__
+  <Foo object at 0x...>
+  >>> new_hoi.__name__
+  'my.unique.key'
+
+Please notice, that our Hoi object does not implement IContained, so a
+containment proxy will be used. This has to be re-established every time we
+retrieve the object
+
+(Guard against former bug: proxy wasn't established when the annotation
+existed already.)a
+
+  >>> old_hoi = IHoi(foo3)
+  >>> old_hoi.__parent__
+  <Foo object at 0x...>
+  >>> old_hoi.__name__
+  'my.unique.key'
