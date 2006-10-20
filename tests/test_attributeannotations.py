@@ -37,14 +37,15 @@ class AttributeAnnotationsTest(AnnotationsTest, cleanup.CleanUp):
 def setUp(test=None):
     cleanup.setUp()
     component.provideAdapter(AttributeAnnotations)
-    
+
 def tearDown(test=None):
     cleanup.tearDown()
-    
+
 def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(AttributeAnnotationsTest),
-        doctest.DocFileSuite('../README.txt', setUp=setUp, tearDown=tearDown)
+        doctest.DocFileSuite('../README.txt', setUp=setUp, tearDown=tearDown,
+            optionflags=doctest.ELLIPSIS)
         ))
 
 if __name__=='__main__':
