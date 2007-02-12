@@ -1,3 +1,0 @@
-zope.annotation Package Changelog
-=================================
-
