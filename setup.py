@@ -18,11 +18,6 @@ $Id$
 
 import os
 
-try:
-    from setuptools import setup, Extension
-except ImportError, e:
-    from distutils.core import setup, Extension
-
 setup(name='zope.annotation',
       version='3.4dev',
       url='http://svn.zope.org/zope.annotation',
@@ -32,7 +27,7 @@ setup(name='zope.annotation',
       author_email='zope3-dev@zope.org',
       long_description="Annotations store arbitrary application"
                        "data under package-unique keys.",
-      packages=['zope', 'zope.annotation', 'zope.annotation.tests'],
+      packages=find_packages('src'),
       package_dir = {'': 'src'},
 
       namespace_packages=['zope',],
