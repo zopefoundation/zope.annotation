@@ -18,6 +18,8 @@ $Id$
 
 import os
 
+from setuptools import setup, find_packages
+
 setup(name='zope.annotation',
       version='3.4dev',
       url='http://svn.zope.org/zope.annotation',
