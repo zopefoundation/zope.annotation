@@ -34,9 +34,10 @@ setup(name='zope.annotation',
 
       namespace_packages=['zope',],
       tests_require = ['zope.testing'],
-      install_requires=['zope.interface',
+      install_requires=['setuptools',
+                        'zope.interface',
                         'zope.component',
-                        'zope.app.container'],
+                        'zope.app'],
       include_package_data = True,
 
       zip_safe = False,
