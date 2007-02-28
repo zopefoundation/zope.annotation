@@ -37,7 +37,7 @@ setup(name='zope.annotation',
       install_requires=['setuptools',
                         'zope.interface',
                         'zope.component',
-                        'zope.app'],
+                        'zope.app'], # should be zope.app.container, when an egg of that is available.
       include_package_data = True,
 
       zip_safe = False,
