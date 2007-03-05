@@ -6,4 +6,10 @@
       factory=".attribute.AttributeAnnotations"
       />
 
+  <adapter
+      for=".interfaces.IAttributeAnnotatable *"
+      provides=".interfaces.IAnnotations"
+      factory=".attribute.AttributeAnnotations"
+      />
+
 </configure>

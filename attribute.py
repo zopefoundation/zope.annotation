@@ -32,7 +32,7 @@ class AttributeAnnotations(DictMixin):
     interface.implements(interfaces.IAnnotations)
     component.adapts(interfaces.IAttributeAnnotatable)
 
-    def __init__(self, obj):
+    def __init__(self, obj, context=None):
         self.obj = obj
 
     def __nonzero__(self):
