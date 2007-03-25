@@ -31,14 +31,12 @@ setup(name='zope.annotation',
                        "data under package-unique keys.",
       packages=find_packages('src'),
       package_dir = {'': 'src'},
-
       namespace_packages=['zope',],
-      tests_require = ['zope.testing'],
       install_requires=['setuptools',
                         'zope.interface',
                         'zope.component',
-                        'zope.app'], # should be zope.app.container, when an egg of that is available.
+                        'zope.app.container',
+                        ], 
       include_package_data = True,
-
       zip_safe = False,
       )
