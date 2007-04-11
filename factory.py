@@ -49,5 +49,5 @@ def factory(factory, key=None):
         return contained_result
 
     # Convention to make adapter introspectable, used by apidoc
-    getAnnotation.factory = factory 
+    getAnnotation.factory = factory
     return getAnnotation
