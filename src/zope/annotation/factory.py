@@ -17,8 +17,10 @@ $Id$
 """
 import zope.component
 import zope.interface
-from zope.annotation.interfaces import IAnnotations
-import zope.app.container.contained
+import zope.location.location
+
+import zope.annotation.interfaces
+
 
 def factory(factory, key=None):
     """Adapter factory to help create annotations easily.
@@ -35,18 +37,17 @@ def factory(factory, key=None):
     @zope.component.adapter(list(adapts)[0])
     @zope.interface.implementer(list(zope.component.implementedBy(factory))[0])
     def getAnnotation(context):
-        annotations = IAnnotations(context)
+        annotations = zope.annotation.interfaces.IAnnotations(context)
         try:
             result = annotations[key]
         except KeyError:
             result = factory()
             annotations[key] = result
-        # Containment has to be set up late to allow containment proxies
+        # Location has to be set up late to allow location proxies
         # to be applied, if needed. This does not trigger an event and is idempotent
-        # if containment is set up already.
-        contained_result = zope.app.container.contained.contained(
-            result, context, key)
-        return contained_result
+        # if location or containment is set up already.
+        located_result = zope.location.location.located(result, context, key)
+        return located_result
 
     # Convention to make adapter introspectable, used by apidoc
     getAnnotation.factory = factory
