@@ -92,10 +92,11 @@ name, provided it is a class.)
   >>> isinstance(IHoi(foo), Hoi)
   True
 
-Containment
------------
 
-Annotation factories are put into the containment hierarchy with their parent
+Location
+--------
+
+Annotation factories are put into the location hierarchy with their parent
 pointing to the annotated object and the name to the dotted name of the
 annotation's class (or the name the adapter was registered under):
 
@@ -105,16 +106,21 @@ annotation's class (or the name the adapter was registered under):
   <Foo object at 0x...>
   >>> new_hoi.__name__
   'my.unique.key'
+  >>> import zope.location.interfaces
+  >>> zope.location.interfaces.ILocation.providedBy(new_hoi)
+  True
 
-Please notice, that our Hoi object does not implement IContained, so a
-containment proxy will be used. This has to be re-established every time we
+Please notice, that our Hoi object does not implement ILocation, so a
+location proxy will be used. This has to be re-established every time we
 retrieve the object
 
 (Guard against former bug: proxy wasn't established when the annotation
-existed already.)a
+existed already.)
 
   >>> old_hoi = IHoi(foo3)
   >>> old_hoi.__parent__
   <Foo object at 0x...>
   >>> old_hoi.__name__
   'my.unique.key'
+  >>> zope.location.interfaces.ILocation.providedBy(old_hoi)
+  True
