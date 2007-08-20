@@ -1,0 +1,10 @@
+===========================
+Changes for zope.annotation
+===========================
+
+3.4.0b1
+=======
+
+* Annotation factories are no longer containing the factored object. Instead
+  the objects are located using zope.location. This removes a dependency to
+  zope.app.container.
