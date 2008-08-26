@@ -36,7 +36,7 @@ long_description = (
 
 setup(
     name = 'zope.annotation',
-    version = '3.4.1',
+    version = '3.4.2dev',
     url = 'http://pypi.python.org/pypi/zope.annotation',
     license = 'ZPL 2.1',
     description = 'Zope annotation',
