@@ -18,6 +18,8 @@ $Id$
 import zope.component
 import zope.interface
 import zope.location.location
+import zope.location.interfaces
+import zope.proxy
 
 import zope.annotation.interfaces
 
@@ -43,11 +45,14 @@ def factory(factory, key=None):
         except KeyError:
             result = factory()
             annotations[key] = result
-        # Location has to be set up late to allow location proxies
-        # to be applied, if needed. This does not trigger an event and is idempotent
-        # if location or containment is set up already.
-        located_result = zope.location.location.located(result, context, key)
-        return located_result
+            if zope.location.interfaces.ILocation.providedBy(result):
+                zope.location.location.locate(result,
+                        zope.proxy.removeAllProxies(context), key)
+        if not (zope.location.interfaces.ILocation.providedBy(result)
+                and result.__parent__ is context
+                and result.__name__ == key):
+            result = zope.location.location.LocationProxy(result, context, key)
+        return result
 
     # Convention to make adapter introspectable, used by apidoc
     getAnnotation.factory = factory
