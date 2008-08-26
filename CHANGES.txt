@@ -4,7 +4,7 @@ Changes for zope.annotation
 
 
 ==================
-3.4.1 (unreleased)
+3.4.1 (2008-08-26)
 ==================
 
 - Annotation factories take care not to store proxies in the database, so
