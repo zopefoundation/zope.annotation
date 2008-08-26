@@ -4,6 +4,15 @@ Changes for zope.annotation
 
 
 ==================
+3.4.1 (unreleased)
+==================
+
+- Annotation factories take care not to store proxies in the database, so
+  adapting an object wrapped in a LocationProxy works correctly.
+  Fixes https://bugs.launchpad.net/zope3/+bug/261620
+
+
+==================
 3.4.0 (2007-08-29)
 ==================
 

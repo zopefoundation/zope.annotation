@@ -60,6 +60,7 @@ setup(
                         'zope.interface',
                         'zope.component',
                         'zope.location>=3.4.0b1.dev-r78903',
+                        'zope.proxy',
                         ],
     extras_require = dict(
         test = ['zope.testing',
