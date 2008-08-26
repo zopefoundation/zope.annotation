@@ -124,3 +124,46 @@ existed already.)
   'my.unique.key'
   >>> zope.location.interfaces.ILocation.providedBy(old_hoi)
   True
+
+
+LocationProxies
+---------------
+
+Suppose your annotation proxy provides ILocation.
+
+  >>> class IPolloi(interface.Interface):
+  ...     pass
+  >>> class Polloi(Persistent):
+  ...     interface.implements(IPolloi, zope.location.interfaces.ILocation)
+  ...     component.adapts(IFoo)
+  ...     __name__ = __parent__ = 0
+  >>> component.provideAdapter(factory(Polloi, 'my.other.key'))
+
+Sometimes you're adapting an object wrapped in a LocationProxy.
+
+  >>> foo4 = Foo()
+  >>> import zope.location.location
+  >>> wrapped_foo4 = zope.location.location.LocationProxy(foo4, None, 'foo4')
+  >>> located_polloi = IPolloi(wrapped_foo4)
+
+At first glance it looks as if located_polloi is located under wrapped_foo4.
+
+  >>> located_polloi.__parent__ is wrapped_foo4
+  True
+  >>> located_polloi.__name__
+  'my.other.key'
+
+but that's because we received a LocationProxy
+
+  >>> print type(located_polloi).__name__
+  LocationProxy
+
+If we unwrap located_polloi and look at it directly, we'll see it stores a
+reference to the real Foo object
+
+  >>> from zope.proxy import removeAllProxies
+  >>> removeAllProxies(located_polloi).__parent__ is foo4
+  True
+  >>> removeAllProxies(located_polloi).__name__
+  'my.other.key'
+
