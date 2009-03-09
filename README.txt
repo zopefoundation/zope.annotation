@@ -1,4 +1,1 @@
-Zope Annotation
-***************
-
-.. contents::
+See src/zope/annotation/README.txt.

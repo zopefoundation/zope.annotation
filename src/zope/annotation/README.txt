@@ -1,5 +1,12 @@
-Annotations
-===========
+==================
+Object Annotations
+==================
+
+This package provides a mechanism to store additional information about
+objects without need to modify object class.
+
+Annotation factories
+--------------------
 
 There is more to document about annotations, but we'll just sketch out
 a scenario on how to use the annotation factory for now. This is one
@@ -166,4 +173,3 @@ reference to the real Foo object
   True
   >>> removeAllProxies(located_polloi).__name__
   'my.other.key'
-
