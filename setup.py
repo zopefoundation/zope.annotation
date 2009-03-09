@@ -17,31 +17,19 @@ $Id$
 """
 
 import os
-
 from setuptools import setup, find_packages
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
-
-long_description = (
-    read('README.txt')
-    + '\n' +
-    read('CHANGES.txt')
-    + '\n' +
-    'Detailed Documentation\n'
-    '**********************\n'
-    + '\n' +
-    read('src', 'zope', 'annotation', 'README.txt') 
-    )
 
 setup(
     name = 'zope.annotation',
     version = '3.5.0dev',
     url = 'http://pypi.python.org/pypi/zope.annotation',
     license = 'ZPL 2.1',
-    description = 'Zope annotation',
+    description = 'Object annotation mechanism',
     author = 'Zope Corporation and Contributors',
-    author_email = 'zope3-dev@zope.org',
+    author_email = 'zope-dev@zope.org',
     classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -52,14 +40,17 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
         ],
-    long_description = long_description,
+    long_description = \
+        read('src', 'zope', 'annotation', 'README.txt') 
+        + '\n\n' +
+        read('CHANGES.txt'),
     packages = find_packages('src'),
     package_dir = {'': 'src'},
     namespace_packages = ['zope',],
     install_requires = ['setuptools',
                         'zope.interface',
                         'zope.component',
-                        'zope.location>=3.4.0b1.dev-r78903',
+                        'zope.location',
                         'zope.proxy',
                         ],
     extras_require = dict(
