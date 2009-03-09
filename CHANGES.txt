@@ -2,7 +2,12 @@
 CHANGES
 =======
 
-3.4.2 (unreleased)
+3.5.0 (unreleased)
+------------------
+
+- ...
+
+3.4.2 (2009-03-09)
 ------------------
 
 - Clean up package description and documentation a bit.
