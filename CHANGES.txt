@@ -5,7 +5,8 @@ CHANGES
 3.5.0 (unreleased)
 ------------------
 
-- ...
+- ZODB3 is a true requirement of this package, not just a testing
+  requirement, as BTrees are in use.
 
 3.4.2 (2009-03-09)
 ------------------

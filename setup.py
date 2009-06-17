@@ -52,10 +52,10 @@ setup(
                       'zope.component',
                       'zope.location',
                       'zope.proxy',
+                      'ZODB3',
                       ],
     extras_require=dict(
-        test=['zope.testing',
-              'ZODB3'],
+        test=['zope.testing'],
         ),
     include_package_data=True,
     zip_safe=False,
