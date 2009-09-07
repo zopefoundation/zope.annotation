@@ -54,11 +54,11 @@ class AnnotationsTest(unittest.TestCase):
 
     def testGet(self):
         # test get
-        self.annotations['unittest'] = obj
+        self.annotations['unittest'] = self.obj
         res = self.annotations.get('unittest')
-        self.failUnlessEqual(obj, res)
+        self.failUnlessEqual(self.obj, res)
 
-    def testGet(self):
+    def testGetNoSet(self):
         # test get with no set
         res = self.annotations.get('randomkey')
         self.failUnlessEqual(None, res)
