@@ -2,7 +2,12 @@
 CHANGES
 =======
 
-3.5.0 (unreleased)
+3.5.1 (unreleased)
+------------------
+
+- ...
+
+3.5.0 (2009-09-07)
 ------------------
 
 - Add ZODB3 to install_requires, because it's a true requirement of this
