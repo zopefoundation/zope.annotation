@@ -2,11 +2,14 @@
 CHANGES
 =======
 
-3.5.0 (unreleased)
+3.5.0 (2009-09-07)
 ------------------
 
-- ZODB3 is a true requirement of this package, not just a testing
-  requirement, as BTrees are in use.
+- Add ZODB3 to install_requires, because it's a true requirement of this
+  package, not just a testing requirement, as BTrees are in use.
+
+- Fix one test that was inactive because it's function was overriden by
+  a mistake.
 
 3.4.2 (2009-03-09)
 ------------------
