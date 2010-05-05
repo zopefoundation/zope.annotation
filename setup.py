@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006-2007 Zope Corporation and Contributors.
+# Copyright (c) 2006-2007 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -33,7 +33,7 @@ setup(
     url='http://pypi.python.org/pypi/zope.annotation',
     license='ZPL 2.1',
     description='Object annotation mechanism',
-    author='Zope Corporation and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
