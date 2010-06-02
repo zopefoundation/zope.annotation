@@ -13,8 +13,6 @@
 ##############################################################################
 """Tests the 'AttributeAnnotations' adapter. Also test the annotation
 factory.
-
-$Id$
 """
 import unittest, doctest
 from zope.testing import cleanup

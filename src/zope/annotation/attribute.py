@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Attribute Annotations implementation
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

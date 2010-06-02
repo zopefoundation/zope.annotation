@@ -15,8 +15,6 @@
 
 All objects implementing 'IAnnotations' should pass these tests. They might be
 used as base tests for real implementations.
-
-$Id$
 """
 import unittest
 from zope.interface.verify import verifyObject
