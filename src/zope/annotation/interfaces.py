@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Annotations store arbitrary application data under package-unique keys.
-
-$Id$
 """
 
 __docformat__ = 'restructuredtext'

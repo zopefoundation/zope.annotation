@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Annotation factory helper
-
-$Id$
 """
 import zope.component
 import zope.interface

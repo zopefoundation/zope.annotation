@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Annotation (meta data) support
-
-$Id$
 """
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.annotation.interfaces import IAnnotations
