@@ -27,7 +27,7 @@ def read(*rnames):
 
 setup(
     name='zope.annotation',
-    version='3.5.1dev',
+    version='3.6.0dev',
     url='http://pypi.python.org/pypi/zope.annotation',
     license='ZPL 2.1',
     description='Object annotation mechanism',
@@ -59,6 +59,10 @@ setup(
                       ],
     extras_require=dict(
         test=['zope.testing'],
+        zcml=[
+            'zope.component[zcml]',
+            'zope.configuration',
+            ],
         ),
     include_package_data=True,
     zip_safe=False,
