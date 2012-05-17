@@ -16,14 +16,15 @@ factory.
 """
 import unittest, doctest
 from zope.testing import cleanup
-from zope.interface import implements
+from zope.interface import implementer
 from zope import component
 from zope.annotation.tests.annotations import AnnotationsTest
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
 
+@implementer(IAttributeAnnotatable)
 class Dummy(object):
-    implements(IAttributeAnnotatable)
+    pass
 
 class AttributeAnnotationsTest(AnnotationsTest, cleanup.CleanUp):
 
