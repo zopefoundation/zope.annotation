@@ -21,14 +21,14 @@ from BTrees.OOBTree import OOBTree
 from zope import component, interface
 from zope.annotation import interfaces
 
+@interface.implementer(interfaces.IAnnotations)
+@component.adapter(interfaces.IAttributeAnnotatable)
 class AttributeAnnotations(DictMixin):
     """Store annotations on an object
 
     Store annotations in the `__annotations__` attribute on a
     `IAttributeAnnotatable` object.
     """
-    interface.implements(interfaces.IAnnotations)
-    component.adapts(interfaces.IAttributeAnnotatable)
 
     def __init__(self, obj, context=None):
         self.obj = obj

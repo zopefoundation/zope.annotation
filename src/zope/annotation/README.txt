@@ -20,8 +20,9 @@ First, let's make a persistent object we can create annotations for:
   ...     pass
   >>> from zope.annotation.interfaces import IAttributeAnnotatable
   >>> from persistent import Persistent
-  >>> class Foo(Persistent):
-  ...     interface.implements(IFoo, IAttributeAnnotatable)
+  >>> @interface.implementer(IFoo, IAttributeAnnotatable)
+  ... class Foo(Persistent):
+  ...     pass
 
 We directly say that Foo implements IAttributeAnnotatable here. In
 practice this is often done in ZCML, using the `implements`
@@ -33,8 +34,8 @@ Now let's create an annotation for this:
   ...     a = interface.Attribute('A')
   ...     b = interface.Attribute('B')
   >>> from zope import component
-  >>> class Bar(Persistent):
-  ...     interface.implements(IBar)
+  >>> @interface.implementer(IBar)
+  ... class Bar(Persistent):
   ...     component.adapts(IFoo)
   ...     def __init__(self):
   ...         self.a = 1
@@ -79,8 +80,9 @@ What if our annotation does not provide what it adapts with
 
   >>> class IQux(interface.Interface):
   ...     pass
-  >>> class Qux(Persistent):
-  ...     interface.implements(IQux)
+  >>> @interface.implementer(IQux)
+  ... class Qux(Persistent):
+  ...     pass
   >>> component.provideAdapter(factory(Qux)) # doctest: +ELLIPSIS
   Traceback (most recent call last):
   ...
@@ -92,8 +94,8 @@ name, provided it is a class.)
 
   >>> class IHoi(interface.Interface):
   ...     pass
-  >>> class Hoi(Persistent):
-  ...     interface.implements(IHoi)
+  >>> @interface.implementer(IHoi)
+  ... class Hoi(Persistent):
   ...     component.adapts(IFoo)
   >>> component.provideAdapter(factory(Hoi, 'my.unique.key'))
   >>> isinstance(IHoi(foo), Hoi)
@@ -140,8 +142,8 @@ Suppose your annotation proxy provides ILocation.
 
   >>> class IPolloi(interface.Interface):
   ...     pass
-  >>> class Polloi(Persistent):
-  ...     interface.implements(IPolloi, zope.location.interfaces.ILocation)
+  >>> @interface.implementer(IPolloi, zope.location.interfaces.ILocation)
+  ... class Polloi(Persistent):
   ...     component.adapts(IFoo)
   ...     __name__ = __parent__ = 0
   >>> component.provideAdapter(factory(Polloi, 'my.other.key'))

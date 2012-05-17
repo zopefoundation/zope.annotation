@@ -31,11 +31,11 @@ class AnnotationsTest(unittest.TestCase):
         self.obj = {1:2, 3:4}
 
     def test_nonzero(self):
-        self.failIf(self.annotations)
+        self.assertFalse(self.annotations)
         self.annotations['unittest'] = self.obj
-        self.failUnless(self.annotations)
+        self.assertTrue(self.annotations)
         del self.annotations['unittest']
-        self.failIf(self.annotations)        
+        self.assertFalse(self.annotations)        
 
     def testInterfaceVerifies(self):
         verifyObject(IAnnotations, self.annotations)
@@ -44,7 +44,7 @@ class AnnotationsTest(unittest.TestCase):
         # test __getitem__
         self.annotations['unittest'] = self.obj
         res = self.annotations['unittest']
-        self.failUnlessEqual(self.obj, res)
+        self.assertEqual(self.obj, res)
 
     def testGetitemException(self):
         # test __getitem__ raises exception on unknown key
@@ -54,22 +54,22 @@ class AnnotationsTest(unittest.TestCase):
         # test get
         self.annotations['unittest'] = self.obj
         res = self.annotations.get('unittest')
-        self.failUnlessEqual(self.obj, res)
+        self.assertEqual(self.obj, res)
 
     def testGetNoSet(self):
         # test get with no set
         res = self.annotations.get('randomkey')
-        self.failUnlessEqual(None, res)
+        self.assertEqual(None, res)
 
     def testGetDefault(self):
         # test get returns default
         res = self.annotations.get('randomkey', 'default')
-        self.failUnlessEqual('default', res)
+        self.assertEqual('default', res)
 
     def testDel(self):
         self.annotations['unittest'] = self.obj
         del self.annotations['unittest']
-        self.failUnlessEqual(None, self.annotations.get('unittest'))
+        self.assertEqual(None, self.annotations.get('unittest'))
 
     def testDelRaisesKeyError(self):
         self.assertRaises(KeyError, self.annotations.__delitem__, 'unittest')
