@@ -11,15 +11,16 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Attribute Annotations implementation
-"""
-__docformat__ = 'restructuredtext'
-
-from UserDict import DictMixin
+"""Attribute Annotations implementation"""
 from BTrees.OOBTree import OOBTree
 
 from zope import component, interface
 from zope.annotation import interfaces
+
+try:
+    from UserDict import DictMixin
+except ImportError:
+    from collections import MutableMapping as DictMixin
 
 @interface.implementer(interfaces.IAnnotations)
 @component.adapter(interfaces.IAttributeAnnotatable)
@@ -57,6 +58,20 @@ class AttributeAnnotations(DictMixin):
             return []
 
         return annotations.keys()
+
+    def __iter__(self):
+        annotations = getattr(self.obj, '__annotations__', None)
+        if annotations is None:
+            return iter([])
+
+        return iter(annotations)
+
+    def __len__(self):
+        annotations = getattr(self.obj, '__annotations__', None)
+        if annotations is None:
+            return 0
+
+        return len(annotations)
 
     def __setitem__(self, key, value):
         """See zope.annotation.interfaces.IAnnotations"""

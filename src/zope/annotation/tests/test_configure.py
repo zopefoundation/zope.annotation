@@ -24,8 +24,8 @@ class ZCMLTest(unittest.TestCase):
         try:
             zope.configuration.xmlconfig.XMLConfig(
                 'configure.zcml', zope.annotation)()
-        except Exception, e:
-            self.fail(e)
+        except Exception as err:
+            self.fail(err)
 
     def test_configure_should_register_n_components(self):
         gsm = zope.component.getGlobalSiteManager()
