@@ -14,13 +14,19 @@
 """Tests the 'AttributeAnnotations' adapter. Also test the annotation
 factory.
 """
-import unittest, doctest
-from zope.testing import cleanup
+import unittest, doctest, re
+from zope.testing import cleanup, renormalizing
 from zope.interface import implementer
 from zope import component
 from zope.annotation.tests.annotations import AnnotationsTest
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
+
+checker = renormalizing.RENormalizing([
+        # PyPy has a different default object repr.
+        (re.compile(r"<__builtin__\.(.*?) object"),
+         r'<\1 object'),
+        ])
 
 @implementer(IAttributeAnnotatable)
 class Dummy(object):
@@ -44,7 +50,7 @@ def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(AttributeAnnotationsTest),
         doctest.DocFileSuite('../README.txt', setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS)
+            optionflags=doctest.ELLIPSIS, checker=checker)
         ))
 
 if __name__=='__main__':

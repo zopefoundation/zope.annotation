@@ -29,7 +29,7 @@ practice this is often done in ZCML, using the `implements`
 subdirective of the `content` or `class` directive.
 
 Now let's create an annotation for this:
-  
+
   >>> class IBar(interface.Interface):
   ...     a = interface.Attribute('A')
   ...     b = interface.Attribute('B')
@@ -164,14 +164,14 @@ At first glance it looks as if located_polloi is located under wrapped_foo4.
 
 but that's because we received a LocationProxy
 
-  >>> print type(located_polloi).__name__
-  LocationProxy
+  >>> type(located_polloi).__name__
+  'LocationProxy'
 
 If we unwrap located_polloi and look at it directly, we'll see it stores a
 reference to the real Foo object
 
   >>> from zope.proxy import removeAllProxies
-  >>> removeAllProxies(located_polloi).__parent__ is foo4
+  >>> removeAllProxies(located_polloi).__parent__ == foo4
   True
   >>> removeAllProxies(located_polloi).__name__
   'my.other.key'
