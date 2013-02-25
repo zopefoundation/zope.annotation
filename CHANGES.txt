@@ -2,11 +2,10 @@
 CHANGES
 =======
 
-4.0.2 (unreleased)
+4.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Added ``__bool__`` method to ``IAnnotations`` API for Python 3 compatibility.
 
 4.0.1 (2013-02-11)
 ------------------
