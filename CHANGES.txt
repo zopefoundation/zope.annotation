@@ -2,11 +2,10 @@
 CHANGES
 =======
 
-4.1.1 (unreleased)
+4.2.0 (2013-03-18)
 ------------------
 
-- Nothing changed yet.
-
+- Don't make AttributeAnnotations available as a view.
 
 4.1.0 (2013-02-24)
 ------------------

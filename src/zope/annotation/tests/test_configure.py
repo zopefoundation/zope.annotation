@@ -36,7 +36,7 @@ class ZCMLTest(unittest.TestCase):
         zope.configuration.xmlconfig.XMLConfig(
             'configure.zcml', zope.annotation)()
         self.assertEqual(u_count + 2, len(list(gsm.registeredUtilities())))
-        self.assertEqual(a_count + 2, len(list(gsm.registeredAdapters())))
+        self.assertEqual(a_count + 1, len(list(gsm.registeredAdapters())))
         self.assertEqual(
             s_count, len(list(gsm.registeredSubscriptionAdapters())))
         self.assertEqual(h_count, len(list(gsm.registeredHandlers())))

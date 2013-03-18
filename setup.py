@@ -41,7 +41,7 @@ def alltests():
 
 setup(
     name='zope.annotation',
-    version='4.1.1.dev0',
+    version='4.2.0',
     url='http://pypi.python.org/pypi/zope.annotation',
     license='ZPL 2.1',
     description='Object annotation mechanism',
