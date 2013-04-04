@@ -72,6 +72,7 @@ setup(
     package_dir={'': 'src'},
     namespace_packages=['zope',],
     install_requires=[
+        'persistent',
         'BTrees',
         'setuptools',
         'zope.interface',
@@ -81,7 +82,6 @@ setup(
         ],
     extras_require=dict(
         test=[
-            'persistent',
             'zope.testing'
             ],
         zcml=[
@@ -91,7 +91,6 @@ setup(
         ),
     test_suite="__main__.alltests",
     tests_require=[
-        'persistent',
         'zope.component[zcml]',
         'zope.configuration',
         'zope.testrunner',
