@@ -23,7 +23,8 @@ import sys
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 def alltests():
     # use the zope.testrunner machinery to find all the
@@ -41,7 +42,7 @@ def alltests():
 
 setup(
     name='zope.annotation',
-    version='4.2.0',
+    version='4.3.0.dev0',
     url='http://pypi.python.org/pypi/zope.annotation',
     license='ZPL 2.1',
     description='Object annotation mechanism',
@@ -65,9 +66,11 @@ setup(
         'Topic :: Software Development',
         ],
     long_description= \
+        read('README.rst')
+        + '\n\n' +
         read('src', 'zope', 'annotation', 'README.txt')
         + '\n\n' +
-        read('CHANGES.txt'),
+        read('CHANGES.rst'),
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope',],

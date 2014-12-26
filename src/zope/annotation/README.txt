@@ -1,9 +1,5 @@
-==================
 Object Annotations
 ==================
-
-This package provides a mechanism to store additional information about
-objects without need to modify object class.
 
 Annotation factories
 --------------------
