@@ -24,7 +24,7 @@ Changes
 4.0.0 (2013-02-11)
 ------------------
 
-- Add support for Python 3.3 and PyPy 1.9.
+- Add support for Python 3.3 and PyPy.
 
 - Replace deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
