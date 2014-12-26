@@ -1,6 +1,11 @@
 Changes
 =======
 
+4.3.0 (unreleased)
+------------------
+
+- Add support for Python 3.4.
+
 4.2.0 (2013-03-18)
 ------------------
 
@@ -9,27 +14,27 @@ Changes
 4.1.0 (2013-02-24)
 ------------------
 
-- Added ``__bool__`` method to ``IAnnotations`` API for Python 3 compatibility.
+- Add ``__bool__`` method to ``IAnnotations`` API for Python 3 compatibility.
 
 4.0.1 (2013-02-11)
 ------------------
 
-- Added `tox.ini`.
+- Add `tox.ini`.
 
 4.0.0 (2013-02-11)
 ------------------
 
-- Added support for Python 3.3 and PyPy 1.9.
+- Add support for Python 3.3 and PyPy 1.9.
 
-- Replaced deprecated ``zope.component.adapts`` usage with equivalent
+- Replace deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
 
-- Replaced deprecated ``zope.interface.implements`` usage with equivalent
+- Replace deprecated ``zope.interface.implements`` usage with equivalent
   ``zope.interface.implementer`` decorator.
 
-- Dropped support for Python 2.4 and 2.5.
+- Drop support for Python 2.4 and 2.5.
 
-- Included zcml dependencies in configure.zcml, require the necessary packages
+- Include zcml dependencies in configure.zcml, require the necessary packages
   via a zcml extra, added tests for zcml.
 
 3.5.0 (2009-09-07)
