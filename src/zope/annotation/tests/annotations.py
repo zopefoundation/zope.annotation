@@ -16,18 +16,17 @@
 All objects implementing 'IAnnotations' should pass these tests. They might be
 used as base tests for real implementations.
 """
-import unittest
 from zope.interface.verify import verifyObject
 from zope.annotation.interfaces import IAnnotations
 
-class AnnotationsTest(unittest.TestCase):
+class AnnotationsTestBase(object):
     """Test the IAnnotations interface.
 
     The test case class expects the 'IAnnotations' implementer to be in
     'self.annotations'.
     """
-
     def setUp(self):
+        super(AnnotationsTestBase, self).setUp()
         self.obj = {1:2, 3:4}
 
     def test_nonzero(self):

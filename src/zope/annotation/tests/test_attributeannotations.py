@@ -18,7 +18,7 @@ import unittest, doctest, re
 from zope.testing import cleanup, renormalizing
 from zope.interface import implementer
 from zope import component
-from zope.annotation.tests.annotations import AnnotationsTest
+from zope.annotation.tests.annotations import AnnotationsTestBase
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
 
@@ -32,8 +32,10 @@ checker = renormalizing.RENormalizing([
 class Dummy(object):
     pass
 
-class AttributeAnnotationsTest(AnnotationsTest, cleanup.CleanUp):
-
+class AttributeAnnotationsTest(AnnotationsTestBase,
+                               unittest.TestCase,
+                               cleanup.CleanUp,
+                              ):
     def setUp(self):
         self.annotations = AttributeAnnotations(Dummy())
         super(AttributeAnnotationsTest, self).setUp()
