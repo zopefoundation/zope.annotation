@@ -1,7 +1,7 @@
 Changes
 =======
 
-4.4.0 (unreleased)
+4.4.0 (2015-01-09)
 ------------------
 
 - LP #98462:  add additional "iterable mapping" methods to ``IAnnotations``.
