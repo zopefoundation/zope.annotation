@@ -1,11 +1,12 @@
 Changes
 =======
 
-4.4.1 (unreleased)
+4.4.1 (2015-01-09)
 ------------------
 
 - Converted doctests to Sphinx documentation.  Doctest snippets are still
   tested via ``tox -e docs``.
+
 
 4.4.0 (2015-01-09)
 ------------------
