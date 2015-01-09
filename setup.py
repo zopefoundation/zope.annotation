@@ -42,7 +42,7 @@ def alltests():
 
 setup(
     name='zope.annotation',
-    version='4.3.1.dev0',
+    version='4.4.0.dev0',
     url='http://pypi.python.org/pypi/zope.annotation',
     license='ZPL 2.1',
     description='Object annotation mechanism',
@@ -76,8 +76,6 @@ setup(
     package_dir={'': 'src'},
     namespace_packages=['zope',],
     install_requires=[
-        'persistent',
-        'BTrees',
         'setuptools',
         'zope.interface',
         'zope.component',
@@ -85,6 +83,10 @@ setup(
         'zope.proxy',
         ],
     extras_require=dict(
+        btrees=[
+            'BTrees',
+            'persistent',
+        ],
         test=[
             'zope.testing'
             ],

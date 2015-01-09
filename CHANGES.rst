@@ -1,10 +1,17 @@
 Changes
 =======
 
-4.3.1 (unreleased)
+4.4.0 (unreleased)
 ------------------
 
-- TBD
+- LP #878265:
+
+  - Make ``persistent`` (used only for doctests) a soft dependency,
+    installable via the ``zope.annotation[btree]`` extra.
+
+  - Make ``BTrees`` (used for attribute storage) a soft dependency,
+    installable via the ``zope.annotation[btree]`` extra.  Fall back to
+    using ``dict`` for attribute storage if ``BTrees`` is not importable.
 
 4.3.0 (2014-12-26)
 ------------------

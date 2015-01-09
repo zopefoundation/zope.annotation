@@ -12,7 +12,16 @@
 #
 ##############################################################################
 """Attribute Annotations implementation"""
-from BTrees.OOBTree import OOBTree
+import logging
+
+try:
+    from BTrees.OOBTree import OOBTree
+except ImportError:
+    logging.getLogger(__name__).warn(
+        'BTrees not available: falling back to dict for attribute storage')
+    _STORAGE = dict
+else:
+    _STORAGE = OOBTree
 
 from zope import component, interface
 from zope.annotation import interfaces
@@ -80,7 +89,7 @@ class AttributeAnnotations(DictMixin):
         try:
             annotations = self.obj.__annotations__
         except AttributeError:
-            annotations = self.obj.__annotations__ = OOBTree()
+            annotations = self.obj.__annotations__ = _STORAGE()
 
         annotations[key] = value
 

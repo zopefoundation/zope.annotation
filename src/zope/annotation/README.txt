@@ -15,7 +15,11 @@ First, let's make a persistent object we can create annotations for:
   >>> class IFoo(interface.Interface):
   ...     pass
   >>> from zope.annotation.interfaces import IAttributeAnnotatable
-  >>> from persistent import Persistent
+  >>> try:
+  ...     from persistent import Persistent
+  ... except ImportError:
+  ...     class Persistent(object):
+  ...         pass
   >>> @interface.implementer(IFoo, IAttributeAnnotatable)
   ... class Foo(Persistent):
   ...     pass
