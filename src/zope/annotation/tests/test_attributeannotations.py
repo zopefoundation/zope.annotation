@@ -11,16 +11,12 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Tests the 'AttributeAnnotations' adapter. Also test the annotation
-factory.
-"""
 import unittest
 
 from zope.annotation.tests.annotations import AnnotationsTestBase
 
-class AttributeAnnotationsTest(AnnotationsTestBase,
-                               unittest.TestCase,
-                              ):
+class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
+
     def setUp(self):
         from zope.testing import cleanup
         from zope.interface import implementer
@@ -33,17 +29,13 @@ class AttributeAnnotationsTest(AnnotationsTestBase,
         class Dummy(object):
             pass
 
-        self.annotations = AttributeAnnotations(Dummy())
+        self.obj = Dummy()
+        self.annotations = AttributeAnnotations(self.obj)
 
     def tearDown(test=None):
         from zope.testing import cleanup
         cleanup.tearDown()
 
-
-def setUp(test=None):
-    from zope.component import provideAdapter
-    from zope.annotation.attribute import AttributeAnnotations
-    provideAdapter(AttributeAnnotations)
 
 def test_suite():
     return unittest.TestSuite((
