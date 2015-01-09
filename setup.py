@@ -97,7 +97,7 @@ setup(
             'repoze.sphinx.autointerface',
             ] + tests_require,
         test=tests_require,
-        testing=tests_require,
+        testing=tests_require + ['nose', 'coverage'],
         zcml=[
             'zope.component[zcml]',
             'zope.configuration',
