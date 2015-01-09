@@ -40,6 +40,13 @@ def alltests():
     suites = list(find_suites(options))
     return TestSuite(suites)
 
+tests_require = [
+    'zope.component[zcml]',
+    'zope.configuration',
+    'zope.testrunner',
+    'zope.testing',
+]
+
 setup(
     name='zope.annotation',
     version='4.4.1.dev0',
@@ -69,8 +76,6 @@ setup(
     long_description= \
         read('README.rst')
         + '\n\n' +
-        read('src', 'zope', 'annotation', 'README.txt')
-        + '\n\n' +
         read('CHANGES.rst'),
     packages=find_packages('src'),
     package_dir={'': 'src'},
@@ -87,20 +92,19 @@ setup(
             'BTrees',
             'persistent',
         ],
-        test=[
-            'zope.testing'
-            ],
+        docs=[
+            'Sphinx',
+            'repoze.sphinx.autointerface',
+            ] + tests_require,
+        test=tests_require,
+        testing=tests_require,
         zcml=[
             'zope.component[zcml]',
             'zope.configuration',
             ],
         ),
     test_suite="__main__.alltests",
-    tests_require=[
-        'zope.component[zcml]',
-        'zope.configuration',
-        'zope.testrunner',
-        'zope.testing'],
+    tests_require=tests_require,
     include_package_data=True,
     zip_safe=False,
     )

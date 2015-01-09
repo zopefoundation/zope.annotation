@@ -13,28 +13,32 @@
 ##############################################################################
 
 import unittest
-import zope.annotation
-import zope.component
-import zope.configuration.xmlconfig
 
 
 class ZCMLTest(unittest.TestCase):
 
     def test_configure_zcml_should_be_loadable(self):
+        from zope.configuration.xmlconfig import XMLConfig
+        import zope.annotation as MUT
+
         try:
-            zope.configuration.xmlconfig.XMLConfig(
-                'configure.zcml', zope.annotation)()
+            XMLConfig('configure.zcml', MUT)()
         except Exception as err:
             self.fail(err)
 
     def test_configure_should_register_n_components(self):
-        gsm = zope.component.getGlobalSiteManager()
+        from zope.component import getGlobalSiteManager
+        from zope.configuration.xmlconfig import XMLConfig
+        import zope.annotation as MUT
+
+        gsm = getGlobalSiteManager()
         u_count = len(list(gsm.registeredUtilities()))
         a_count = len(list(gsm.registeredAdapters()))
         s_count = len(list(gsm.registeredSubscriptionAdapters()))
         h_count = len(list(gsm.registeredHandlers()))
-        zope.configuration.xmlconfig.XMLConfig(
-            'configure.zcml', zope.annotation)()
+
+        XMLConfig( 'configure.zcml', MUT)()
+
         self.assertEqual(u_count + 2, len(list(gsm.registeredUtilities())))
         self.assertEqual(a_count + 1, len(list(gsm.registeredAdapters())))
         self.assertEqual(

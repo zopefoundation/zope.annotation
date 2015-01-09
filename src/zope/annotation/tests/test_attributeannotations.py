@@ -14,46 +14,38 @@
 """Tests the 'AttributeAnnotations' adapter. Also test the annotation
 factory.
 """
-import unittest, doctest, re
-from zope.testing import cleanup, renormalizing
-from zope.interface import implementer
-from zope import component
+import unittest
+
 from zope.annotation.tests.annotations import AnnotationsTestBase
-from zope.annotation.attribute import AttributeAnnotations
-from zope.annotation.interfaces import IAttributeAnnotatable
-
-checker = renormalizing.RENormalizing([
-        # PyPy has a different default object repr.
-        (re.compile(r"<__builtin__\.(.*?) object"),
-         r'<\1 object'),
-        ])
-
-@implementer(IAttributeAnnotatable)
-class Dummy(object):
-    pass
 
 class AttributeAnnotationsTest(AnnotationsTestBase,
                                unittest.TestCase,
-                               cleanup.CleanUp,
                               ):
     def setUp(self):
+        from zope.testing import cleanup
+        from zope.interface import implementer
+        from zope.annotation.attribute import AttributeAnnotations
+        from zope.annotation.interfaces import IAttributeAnnotatable
+
+        cleanup.setUp()
+
+        @implementer(IAttributeAnnotatable)
+        class Dummy(object):
+            pass
+
         self.annotations = AttributeAnnotations(Dummy())
-        super(AttributeAnnotationsTest, self).setUp()
+
+    def tearDown(test=None):
+        from zope.testing import cleanup
+        cleanup.tearDown()
 
 
 def setUp(test=None):
-    cleanup.setUp()
-    component.provideAdapter(AttributeAnnotations)
-
-def tearDown(test=None):
-    cleanup.tearDown()
+    from zope.component import provideAdapter
+    from zope.annotation.attribute import AttributeAnnotations
+    provideAdapter(AttributeAnnotations)
 
 def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(AttributeAnnotationsTest),
-        doctest.DocFileSuite('../README.txt', setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS, checker=checker)
-        ))
-
-if __name__=='__main__':
-    unittest.main(defaultTest='test_suite')
+    ))
