@@ -51,8 +51,7 @@ class IAnnotations(IAnnotatable):
         Must be identical to __bool__()
         """
 
-    # Python 3 API.
-    def __bool__():
+    def __bool__(): # Python 3 API.
         """Test whether there are any annotations
 
         Must be identical to __nonzero__()
@@ -79,6 +78,18 @@ class IAnnotations(IAnnotatable):
         """Removes the annotation stored under key.
 
         Raises a KeyError if the key is not found.
+        """
+
+    def __iter__():
+        """Return an iterator for the keys in the container.
+        """
+
+    def __contains__(key):
+        """Return True if 'key' is in the container, else False.
+        """
+
+    def items():
+        """Return '(key, value)' pairs for the keys in the container.
         """
 
 class IAttributeAnnotatable(IAnnotatable):

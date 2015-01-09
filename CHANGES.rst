@@ -4,6 +4,8 @@ Changes
 4.4.0 (unreleased)
 ------------------
 
+- LP #98462:  add additional "iterable mapping" methods to ``IAnnotations``.
+
 - LP #878265:
 
   - Make ``persistent`` (used only for doctests) a soft dependency,
