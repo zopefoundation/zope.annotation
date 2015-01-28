@@ -1,0 +1,8 @@
+repoze.sphinx.autointerface
+zope.component[zcml]
+zope.configuration
+zope.interface
+zope.location
+zope.proxy
+zope.testing
+zope.testrunner
