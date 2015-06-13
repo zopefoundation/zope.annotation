@@ -4,13 +4,13 @@ Changes
 4.4.2 (unreleased)
 ------------------
 
-- TBD
+- Add support for Python 3.2.
 
 
 4.4.1 (2015-01-09)
 ------------------
 
-- Converted doctests to Sphinx documentation.  Doctest snippets are still
+- Convert doctests to Sphinx documentation.  Doctest snippets are still
   tested via ``tox -e docs``.
 
 
