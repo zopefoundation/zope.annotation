@@ -1,7 +1,7 @@
 ``zope.annotation`` README
 ==========================
 
-.. image:: https://pypip.in/version/zope.annotation/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/v/zope.annotation.svg
     :target: https://pypi.python.org/pypi/zope.annotation/
     :alt: Latest Version
 

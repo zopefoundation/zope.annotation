@@ -5,6 +5,7 @@ Changes
 ------------------
 
 - Add support for Python 3.2.
+- Claim support for Python 3.5.
 
 
 4.4.1 (2015-01-09)
