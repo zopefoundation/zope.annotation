@@ -49,7 +49,7 @@ tests_require = [
 
 setup(
     name='zope.annotation',
-    version='4.4.2.dev0',
+    version='4.5.0.dev0',
     url='https://github.com/zopefoundation/zope.annotation',
     license='ZPL 2.1',
     description='Object annotation mechanism',
@@ -61,10 +61,8 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',

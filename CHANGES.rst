@@ -1,10 +1,11 @@
 Changes
 =======
 
-4.4.2 (unreleased)
+4.5.0 (unreleased)
 ------------------
 
-- Add support for Python 3.2.
+- Drop support for Python 2.6.
+
 - Claim support for Python 3.5.
 
 
