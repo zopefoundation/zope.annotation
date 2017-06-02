@@ -25,16 +25,16 @@ class AnnotationsTestBase(object):
     The test case class expects the 'IAnnotations' implementer to be in
     'self.annotations'.
     """
-    def setUp(self):
-        super(AnnotationsTestBase, self).setUp()
-        self.obj = {1:2, 3:4}
+
+    annotations = None
+    obj = None
 
     def test_nonzero(self):
         self.assertFalse(self.annotations)
         self.annotations['unittest'] = self.obj
         self.assertTrue(self.annotations)
         del self.annotations['unittest']
-        self.assertFalse(self.annotations)        
+        self.assertFalse(self.annotations)
 
     def testInterfaceVerifies(self):
         verifyObject(IAnnotations, self.annotations)
@@ -69,6 +69,22 @@ class AnnotationsTestBase(object):
         self.annotations['unittest'] = self.obj
         del self.annotations['unittest']
         self.assertEqual(None, self.annotations.get('unittest'))
+        self.assertEqual([], list(self.annotations.keys()))
+        self.assertEqual([], list(self.annotations))
+        self.assertEqual(0, len(self.annotations))
 
     def testDelRaisesKeyError(self):
         self.assertRaises(KeyError, self.annotations.__delitem__, 'unittest')
+
+    def testKeys(self):
+        self.assertEqual([], list(self.annotations.keys()))
+        self.annotations['unittest'] = self.obj
+        self.assertEqual(1, len(self.annotations))
+        self.assertEqual(['unittest'], list(self.annotations.keys()))
+
+    def testIter(self):
+        self.assertEqual([], list(self.annotations))
+        self.annotations['unittest'] = self.obj
+        self.assertEqual(1, len(self.annotations))
+        self.assertEqual(['unittest'], list(self.annotations))
+        self.assertEqual(1, len(self.annotations))

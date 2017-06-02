@@ -21,10 +21,7 @@ class ZCMLTest(unittest.TestCase):
         from zope.configuration.xmlconfig import XMLConfig
         import zope.annotation as MUT
 
-        try:
-            XMLConfig('configure.zcml', MUT)()
-        except Exception as err:
-            self.fail(err)
+        XMLConfig('configure.zcml', MUT)()
 
     def test_configure_should_register_n_components(self):
         from zope.component import getGlobalSiteManager

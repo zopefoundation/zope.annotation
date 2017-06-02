@@ -15,21 +15,18 @@
 import logging
 
 try:
-    from BTrees.OOBTree import OOBTree
-except ImportError:
-    logging.getLogger(__name__).warn(
+    from BTrees.OOBTree import OOBTree as _STORAGE
+except ImportError: # pragma: no cover
+    logging.getLogger(__name__).warning(
         'BTrees not available: falling back to dict for attribute storage')
     _STORAGE = dict
-else:
-    _STORAGE = OOBTree
 
 from zope import component, interface
 from zope.annotation import interfaces
 
-try:
-    from UserDict import DictMixin
-except ImportError:
-    from collections import MutableMapping as DictMixin
+from collections import MutableMapping as DictMixin
+
+_EMPTY_STORAGE = _STORAGE()
 
 @interface.implementer(interfaces.IAnnotations)
 @component.adapter(interfaces.IAttributeAnnotatable)
@@ -50,38 +47,23 @@ class AttributeAnnotations(DictMixin):
 
     def get(self, key, default=None):
         """See zope.annotation.interfaces.IAnnotations"""
-        annotations = getattr(self.obj, '__annotations__', None)
-        if not annotations:
-            return default
-
+        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
         return annotations.get(key, default)
 
     def __getitem__(self, key):
-        annotations = getattr(self.obj, '__annotations__', None)
-        if annotations is None:
-            raise KeyError(key)
-
+        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
         return annotations[key]
 
     def keys(self):
-        annotations = getattr(self.obj, '__annotations__', None)
-        if annotations is None:
-            return []
-
+        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
         return annotations.keys()
 
     def __iter__(self):
-        annotations = getattr(self.obj, '__annotations__', None)
-        if annotations is None:
-            return iter([])
-
+        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
         return iter(annotations)
 
     def __len__(self):
-        annotations = getattr(self.obj, '__annotations__', None)
-        if annotations is None:
-            return 0
-
+        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
         return len(annotations)
 
     def __setitem__(self, key, value):

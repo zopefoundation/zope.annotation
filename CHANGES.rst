@@ -8,6 +8,11 @@ Changes
 
 - Claim support for Python 3.5.
 
+- Reach 100% test coverage.
+
+- ``AttributeAnnotations`` is now always a
+  ``collections.MutableMapping``. Previously on Python 2 it was a
+  ``UserDict.DictMixin``.
 
 4.4.1 (2015-01-09)
 ------------------
