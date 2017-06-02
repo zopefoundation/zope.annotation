@@ -1,8 +1,8 @@
-*.pyc
-__pycache__
 *.egg-info
-.tox/
+*.pyc
 .coverage
+.tox/
+__pycache__
 coverage.xml
-nosetests.xml
 docs/_build
+nosetests.xml
