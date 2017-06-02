@@ -5,4 +5,3 @@
 __pycache__
 coverage.xml
 docs/_build
-nosetests.xml
