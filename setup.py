@@ -19,27 +19,12 @@
 """Setup for zope.annotation package
 """
 import os
-import sys
 from setuptools import setup, find_packages
 
 
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
-
-def alltests():
-    # use the zope.testrunner machinery to find all the
-    # test suites we've put under ourselves
-    from zope.testrunner.options import get_options
-    from zope.testrunner.find import find_suites
-    from unittest import TestSuite
-    here = os.path.abspath(os.path.dirname(sys.argv[0]))
-    args = sys.argv[:]
-    src = os.path.join(here, 'src')
-    defaults = ['--test-path', src]
-    options = get_options(args, defaults)
-    suites = list(find_suites(options))
-    return TestSuite(suites)
 
 tests_require = [
     'zope.component[zcml]',
