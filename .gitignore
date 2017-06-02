@@ -6,3 +6,4 @@ __pycache__
 coverage.xml
 docs/_build
 htmlcov/
+.coverage.py*
