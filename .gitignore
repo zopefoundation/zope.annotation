@@ -1,6 +1,7 @@
 *.egg-info
 *.pyc
 .coverage
+.coverage.*
 .tox/
 __pycache__
 coverage.xml

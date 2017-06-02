@@ -6,7 +6,7 @@ Changes
 
 - Drop support for Python 2.6.
 
-- Claim support for Python 3.5.
+- Claim support for Python 3.5 and 3.6.
 
 - Reach 100% test coverage.
 
