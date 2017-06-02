@@ -8,6 +8,5 @@ precision = 2
 [paths]
 source =
     src/
-    .tox/py*/lib/python*/site-packages/
-    .tox/nobtree/lib/python*/site-packages/
+    .tox/*/lib/python*/site-packages/
     .tox/pypy*/site-packages/
