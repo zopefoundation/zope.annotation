@@ -60,6 +60,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
     ],
+    keywords='zope annotation ZODB zope3 ztk',
     long_description=(
         read('README.rst')
         + '\n\n' +
