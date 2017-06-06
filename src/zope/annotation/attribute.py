@@ -39,47 +39,46 @@ class AttributeAnnotations(DictMixin):
 
     def __init__(self, obj, context=None):
         self.obj = obj
+        self._annotations = getattr(obj, '__annotations__', _EMPTY_STORAGE)
 
     def __bool__(self):
-        return bool(getattr(self.obj, '__annotations__', 0))
+        return bool(self._annotations)
 
     __nonzero__ = __bool__
 
     def get(self, key, default=None):
         """See zope.annotation.interfaces.IAnnotations"""
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
-        return annotations.get(key, default)
+        return self._annotations.get(key, default)
 
     def __getitem__(self, key):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
-        return annotations[key]
+        return self._annotations[key]
 
     def keys(self):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
-        return annotations.keys()
+        return self._annotations.keys()
 
     def __iter__(self):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
-        return iter(annotations)
+        return iter(self._annotations)
 
     def __len__(self):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
-        return len(annotations)
+        return len(self._annotations)
+
+    # Writing must refresh the attribute from the underlying object,
+    # in case of modification by a different AttributeAnnotations object.
 
     def __setitem__(self, key, value):
         """See zope.annotation.interfaces.IAnnotations"""
         try:
-            annotations = self.obj.__annotations__
+            self._annotations = self.obj.__annotations__
         except AttributeError:
-            annotations = self.obj.__annotations__ = _STORAGE()
+            self._annotations = self.obj.__annotations__ = _STORAGE()
 
-        annotations[key] = value
+        self._annotations[key] = value
 
     def __delitem__(self, key):
         """See zope.app.interfaces.annotation.IAnnotations"""
         try:
-            annotation = self.obj.__annotations__
+            self._annotations = self.obj.__annotations__
         except AttributeError:
             raise KeyError(key)
 
-        del annotation[key]
+        del self._annotations[key]

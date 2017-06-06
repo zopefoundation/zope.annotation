@@ -4,7 +4,16 @@ Changes
 4.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Optimize ``AttributeAnnotations`` for speed. In the case that only
+  one method is called on a given instance, there should be no
+  difference. But if more than one method is called, there should be a
+  speed increase (such as the common pattern ``if 'key' not in
+  annotations: annotations['key'] = value``). A consequence is that
+  read-only operations on a given AttributeAnnotations instance will
+  not immediately reflect changes made to other extant
+  ``AttributeAnnotations`` objects, *if* the
+  underlying object had no annotations to begin with. See `issue 8
+  <https://github.com/zopefoundation/zope.annotation/issues/8>`_.
 
 
 4.5 (2017-06-03)

@@ -94,7 +94,7 @@ class IAnnotations(IAnnotatable):
 
 class IAttributeAnnotatable(IAnnotatable):
     """Marker indicating that annotations can be stored on an attribute.
-    
+
     This is a marker interface giving permission for an `IAnnotations`
     adapter to store data in an attribute named `__annotations__`.
 
