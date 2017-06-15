@@ -37,6 +37,14 @@ class AttributeAnnotations(DictMixin):
     `IAttributeAnnotatable` object.
     """
 
+    # Yes, there's a lot of repetition of the `getattr` call,
+    # but that turns out to be the most efficient for the ways
+    # instances are typically used without sacrificing any semantics.
+    # See https://github.com/zopefoundation/zope.annotation/issues/8
+    # for a discussion of alternatives (which included functools.partial,
+    # a closure, capturing the annotations in __init__, and versions
+    # with getattr and exceptions).
+
     def __init__(self, obj, context=None):
         self.obj = obj
 
