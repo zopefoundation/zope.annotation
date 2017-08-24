@@ -4,7 +4,11 @@ Changes
 4.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Make ``AttributeAnnotations`` have a ``__parent__``. The
+  ``__parent__`` is the object that it stores ``__annotations__`` on.
+  This is a convenience for upwards traversal as used by things like
+  ``zope.keyreference``. See
+  https://github.com/zopefoundation/zope.annotation/issues/11
 
 
 4.5 (2017-06-03)
