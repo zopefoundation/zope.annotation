@@ -1,8 +1,8 @@
 Changes
 =======
 
-4.6 (unreleased)
-----------------
+4.6.0 (2017-09-22)
+------------------
 
 - Make ``AttributeAnnotations`` have a ``__parent__``. The
   ``__parent__`` is the object that it stores ``__annotations__`` on.
