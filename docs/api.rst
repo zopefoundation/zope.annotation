@@ -10,10 +10,6 @@ These interfaces define the source and targets for adaptation under the
 
 .. automodule:: zope.annotation.interfaces
 
-   .. autointerface::  IAnnotatable
-
-   .. autointerface::  IAnnotations
-
 
 Attribute-Based Annotations
 ---------------------------
@@ -25,6 +21,9 @@ The default adapter implementation uses a special attribute,
 
 Because setting an attribute is somewhat intrusive (as opposed to storing
 annotations elsewhere), this adapter requires that its context implment
-``IAttributeAnnotatable`` to signal that this attribute can be used.
+:class:`zope.annotation.interfaces.IAttributeAnnotatable` to signal that this attribute can be used.
 
-.. autointerface::  zope.annotation.interfaces.IAttributeAnnotatable
+Factories
+---------
+
+.. automodule:: zope.annotation.factory

@@ -32,9 +32,13 @@ class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
         self.obj = Dummy()
         self.annotations = AttributeAnnotations(self.obj)
 
-    def tearDown(test=None):
+    def tearDown(self):
         from zope.testing import cleanup
         cleanup.tearDown()
+
+    def testInterfaceVerifies(self):
+        super(AttributeAnnotationsTest, self).testInterfaceVerifies()
+        self.assertIs(self.obj, self.annotations.__parent__)
 
 
 def test_suite():

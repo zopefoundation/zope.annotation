@@ -53,10 +53,10 @@ Now let's create an annotation for this:
    ...         self.b = 2
 
 Note that the annotation implementation does not expect any arguments
-to its `__init__`. Otherwise it's basically an adapter.
+to its ``__init__``. Otherwise it's basically an adapter.
 
 Now, we'll register the annotation as an adapter. To do this we use
-the `factory` function provided by `zope.annotation`:
+the :func:`~.factory` function provided by ``zope.annotation``:
 
 .. doctest::
 
@@ -70,7 +70,7 @@ the `factory` function provided by `zope.annotation`:
 Note that we do not need to specify what the adapter provides or what
 it adapts - we already do this on the annotation class itself.
 
-Now let's make an instance of `Foo`, and make an annotation for it.
+Now let's make an instance of ``Foo``, and make an annotation for it.
 
 .. doctest::
 
@@ -81,7 +81,7 @@ Now let's make an instance of `Foo`, and make an annotation for it.
    >>> bar.b
    2
 
-We'll change `a` and get the annotation again. Our change is still
+We'll change ``a`` and get the annotation again. Our change is still
 there:
 
 .. doctest::
@@ -90,7 +90,7 @@ there:
    >>> IBar(foo).a
    3
 
-Of course it's still different for another instance of `Foo`:
+Of course it's still different for another instance of ``Foo``:
 
 .. doctest::
 

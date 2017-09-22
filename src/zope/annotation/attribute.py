@@ -13,6 +13,7 @@
 ##############################################################################
 """Attribute Annotations implementation"""
 import logging
+from collections import MutableMapping as DictMixin
 
 try:
     from BTrees.OOBTree import OOBTree as _STORAGE
@@ -24,7 +25,6 @@ except ImportError: # pragma: no cover
 from zope import component, interface
 from zope.annotation import interfaces
 
-from collections import MutableMapping as DictMixin
 
 _EMPTY_STORAGE = _STORAGE()
 
@@ -47,6 +47,10 @@ class AttributeAnnotations(DictMixin):
 
     def __init__(self, obj, context=None):
         self.obj = obj
+
+    @property
+    def __parent__(self):
+        return self.obj
 
     def __bool__(self):
         return bool(getattr(self.obj, '__annotations__', 0))
