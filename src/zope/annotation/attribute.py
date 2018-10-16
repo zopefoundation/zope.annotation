@@ -13,7 +13,12 @@
 ##############################################################################
 """Attribute Annotations implementation"""
 import logging
-from collections import MutableMapping as DictMixin
+
+try:
+    from collections.abc import MutableMapping as DictMixin
+except ImportError:
+    # Python 2
+    from collections import MutableMapping as DictMixin
 
 try:
     from BTrees.OOBTree import OOBTree as _STORAGE
