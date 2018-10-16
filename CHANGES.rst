@@ -1,14 +1,17 @@
-Changes
-=======
+=========
+ Changes
+=========
 
-4.6.1 (unreleased)
-------------------
+4.7.0 (unreleased)
+==================
 
-- Nothing changed yet.
+- Add support for Python 3.7 and drop support for Python 3.3.
 
+- Fix a DeprecationWarning from ``zope.annotation.attribute``. See
+  `issue 16 <https://github.com/zopefoundation/zope.annotation/issues/16>`_.
 
 4.6.0 (2017-09-22)
-------------------
+==================
 
 - Make ``AttributeAnnotations`` have a ``__parent__``. The
   ``__parent__`` is the object that it stores ``__annotations__`` on.
@@ -18,7 +21,7 @@ Changes
 
 
 4.5 (2017-06-03)
-----------------
+================
 
 - Drop support for Python 2.6.
 
@@ -31,14 +34,14 @@ Changes
   ``UserDict.DictMixin``.
 
 4.4.1 (2015-01-09)
-------------------
+==================
 
 - Convert doctests to Sphinx documentation.  Doctest snippets are still
   tested via ``tox -e docs``.
 
 
 4.4.0 (2015-01-09)
-------------------
+==================
 
 - LP #98462:  add additional "iterable mapping" methods to ``IAnnotations``.
 
@@ -52,27 +55,27 @@ Changes
     using ``dict`` for attribute storage if ``BTrees`` is not importable.
 
 4.3.0 (2014-12-26)
-------------------
+==================
 
 - Add support for Python 3.4.
 
 4.2.0 (2013-03-18)
-------------------
+==================
 
 - Don't make AttributeAnnotations available as a view.
 
 4.1.0 (2013-02-24)
-------------------
+==================
 
 - Add ``__bool__`` method to ``IAnnotations`` API for Python 3 compatibility.
 
 4.0.1 (2013-02-11)
-------------------
+==================
 
 - Add `tox.ini`.
 
 4.0.0 (2013-02-11)
-------------------
+==================
 
 - Add support for Python 3.3 and PyPy.
 
@@ -88,7 +91,7 @@ Changes
   via a zcml extra, added tests for zcml.
 
 3.5.0 (2009-09-07)
-------------------
+==================
 
 - Add ZODB3 to install_requires, because it's a true requirement of this
   package, not just a testing requirement, as BTrees are in use.
@@ -97,7 +100,7 @@ Changes
   a mistake.
 
 3.4.2 (2009-03-09)
-------------------
+==================
 
 - Clean up package description and documentation a bit.
 
@@ -107,14 +110,14 @@ Changes
 - Remove old zpkg-related files.
 
 3.4.1 (2008-08-26)
-------------------
+==================
 
 - Annotation factories take care not to store proxies in the database,
   so adapting an object wrapped in a ``LocationProxy`` works correctly.
   Fixes https://bugs.launchpad.net/zope3/+bug/261620
 
 3.4.0 (2007-08-29)
-------------------
+==================
 
 - Annotation factories are no longer containing the factored object.
   Instead the objects are located using ``zope.location``. This removes

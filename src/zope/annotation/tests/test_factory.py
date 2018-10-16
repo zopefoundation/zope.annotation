@@ -40,9 +40,12 @@ class Context(dict):
 
 class TestFactory(unittest.TestCase):
 
+    assertRaisesRegex = getattr(unittest.TestCase, 'assertRaisesRegex',
+                                getattr(unittest.TestCase, 'assertRaisesRegexp'))
+
     def test_no_adapts(self):
-        self.assertRaisesRegexp(TypeError, "Missing.*on annotation",
-                                factory, TestFactory)
+        self.assertRaisesRegex(TypeError, "Missing.*on annotation",
+                               factory, TestFactory)
 
     def test_factory_no_location(self):
 
