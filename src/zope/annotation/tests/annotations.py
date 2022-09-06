@@ -49,7 +49,7 @@ class AnnotationsTestBase(object):
 
     def testGetitemException(self):
         # test __getitem__ raises exception on unknown key
-        self.assertRaises(KeyError, self.annotations.__getitem__,'randomkey')
+        self.assertRaises(KeyError, self.annotations.__getitem__, 'randomkey')
 
     def testGet(self):
         # test get

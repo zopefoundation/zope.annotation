@@ -25,22 +25,27 @@ from zope.annotation.interfaces import IAnnotations
 class ITarget(interface.Interface):
     pass
 
+
 class IContext(IAnnotations):
     pass
+
 
 @interface.implementer(ITarget)
 @component.adapter(IContext)
 class Target(object):
     pass
 
+
 @interface.implementer(IContext)
 class Context(dict):
     pass
 
+
 class TestFactory(unittest.TestCase):
 
-    assertRaisesRegex = getattr(unittest.TestCase, 'assertRaisesRegex',
-                                getattr(unittest.TestCase, 'assertRaisesRegexp'))
+    assertRaisesRegex = getattr(
+        unittest.TestCase, 'assertRaisesRegex',
+        getattr(unittest.TestCase, 'assertRaisesRegexp'))  # PY2
 
     def test_no_adapts(self):
         self.assertRaisesRegex(TypeError, "Missing.*on annotation",

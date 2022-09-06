@@ -36,7 +36,7 @@ class ZCMLTest(unittest.TestCase):
         s_count = len(list(gsm.registeredSubscriptionAdapters()))
         h_count = len(list(gsm.registeredHandlers()))
 
-        XMLConfig( 'configure.zcml', MUT)()
+        XMLConfig('configure.zcml', MUT)()
 
         self.assertEqual(u_count + 2, len(list(gsm.registeredUtilities())))
         self.assertEqual(a_count + 1, len(list(gsm.registeredAdapters())))

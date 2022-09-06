@@ -23,7 +23,7 @@ except ImportError:
 
 try:
     from BTrees.OOBTree import OOBTree as _STORAGE
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     logging.getLogger(__name__).warning(
         'BTrees not available: falling back to dict for attribute storage')
     _STORAGE = dict
@@ -34,6 +34,7 @@ from zope.annotation import interfaces
 
 
 _EMPTY_STORAGE = _STORAGE()
+
 
 @interface.implementer(interfaces.IAnnotations)
 @component.adapter(interfaces.IAttributeAnnotatable)
