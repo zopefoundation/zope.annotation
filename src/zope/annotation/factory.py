@@ -15,8 +15,8 @@
 """
 import zope.component
 import zope.interface
-import zope.location.location
 import zope.location.interfaces
+import zope.location.location
 import zope.proxy
 
 import zope.annotation.interfaces

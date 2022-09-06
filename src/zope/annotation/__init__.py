@@ -13,6 +13,6 @@
 ##############################################################################
 """Annotation (meta data) support
 """
-from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.annotation.interfaces import IAnnotations
 from zope.annotation.factory import factory
+from zope.annotation.interfaces import IAnnotations
+from zope.annotation.interfaces import IAttributeAnnotatable

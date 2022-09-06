@@ -19,6 +19,7 @@ class ZCMLTest(unittest.TestCase):
 
     def test_configure_zcml_should_be_loadable(self):
         from zope.configuration.xmlconfig import XMLConfig
+
         import zope.annotation as MUT
 
         XMLConfig('configure.zcml', MUT)()
@@ -26,6 +27,7 @@ class ZCMLTest(unittest.TestCase):
     def test_configure_should_register_n_components(self):
         from zope.component import getGlobalSiteManager
         from zope.configuration.xmlconfig import XMLConfig
+
         import zope.annotation as MUT
 
         gsm = getGlobalSiteManager()

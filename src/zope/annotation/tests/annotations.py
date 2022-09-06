@@ -17,7 +17,9 @@ All objects implementing 'IAnnotations' should pass these tests. They might be
 used as base tests for real implementations.
 """
 from zope.interface.verify import verifyObject
+
 from zope.annotation.interfaces import IAnnotations
+
 
 class AnnotationsTestBase(object):
     """Test the IAnnotations interface.
