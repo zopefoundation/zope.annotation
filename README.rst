@@ -5,8 +5,8 @@
     :target: https://pypi.python.org/pypi/zope.annotation/
     :alt: Latest Version
 
-.. image:: https://travis-ci.com/zopefoundation/zope.annotation.svg?branch=master
-        :target: https://travis-ci.com/zopefoundation/zope.annotation
+.. image:: https://github.com/zopefoundation/zope.annotation/actions/workflows/tests.yml/badge.svg
+        :target: https://github.com/zopefoundation/zope.annotation/actions/workflows/tests.yml
 
 .. image:: https://readthedocs.org/projects/zopeannotation/badge/?version=latest
         :target: http://zopeannotation.readthedocs.org/en/latest/
