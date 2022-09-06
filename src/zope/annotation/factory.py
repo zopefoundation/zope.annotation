@@ -44,8 +44,8 @@ def factory(factory, key=None):
             result = factory()
             annotations[key] = result
             if zope.location.interfaces.ILocation.providedBy(result):
-                zope.location.location.locate(result,
-                        zope.proxy.removeAllProxies(context), key)
+                zope.location.location.locate(
+                    result, zope.proxy.removeAllProxies(context), key)
         if not (zope.location.interfaces.ILocation.providedBy(result)
                 and result.__parent__ is context
                 and result.__name__ == key):

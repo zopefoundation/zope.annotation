@@ -31,6 +31,7 @@ class IAnnotatable(Interface):
     `IAttributeAnnotatable`.
     """
 
+
 class IAnnotations(IAnnotatable):
     """Stores arbitrary application data under package-unique keys.
 
@@ -52,7 +53,7 @@ class IAnnotations(IAnnotatable):
         Must be identical to __bool__()
         """
 
-    def __bool__(): # Python 3 API.
+    def __bool__():  # Python 3 API.
         """Test whether there are any annotations
 
         Must be identical to __nonzero__()
@@ -93,9 +94,10 @@ class IAnnotations(IAnnotatable):
         """Return '(key, value)' pairs for the keys in the container.
         """
 
+
 class IAttributeAnnotatable(IAnnotatable):
     """Marker indicating that annotations can be stored on an attribute.
-    
+
     This is a marker interface giving permission for an `IAnnotations`
     adapter to store data in an attribute named `__annotations__`.
 
