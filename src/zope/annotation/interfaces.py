@@ -18,6 +18,7 @@ __docformat__ = 'restructuredtext'
 
 from zope.interface import Interface
 
+
 class IAnnotatable(Interface):
     """Marker interface for objects that support storing annotations.
 

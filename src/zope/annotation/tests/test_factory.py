@@ -14,12 +14,11 @@
 
 import unittest
 
-from zope.annotation import factory
-
-from zope import interface
-from zope import component
 from zope.location.interfaces import ILocation
 
+from zope import component
+from zope import interface
+from zope.annotation import factory
 from zope.annotation.interfaces import IAnnotations
 
 

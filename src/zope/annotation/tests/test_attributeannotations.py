@@ -15,11 +15,13 @@ import unittest
 
 from zope.annotation.tests.annotations import AnnotationsTestBase
 
+
 class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
 
     def setUp(self):
-        from zope.testing import cleanup
         from zope.interface import implementer
+        from zope.testing import cleanup
+
         from zope.annotation.attribute import AttributeAnnotations
         from zope.annotation.interfaces import IAttributeAnnotatable
 

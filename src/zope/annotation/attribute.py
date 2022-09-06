@@ -14,6 +14,7 @@
 """Attribute Annotations implementation"""
 import logging
 
+
 try:
     from collections.abc import MutableMapping as DictMixin
 except ImportError:
@@ -27,7 +28,8 @@ except ImportError: # pragma: no cover
         'BTrees not available: falling back to dict for attribute storage')
     _STORAGE = dict
 
-from zope import component, interface
+from zope import component
+from zope import interface
 from zope.annotation import interfaces
 
 
