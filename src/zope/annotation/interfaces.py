@@ -47,17 +47,8 @@ class IAnnotations(IAnnotatable):
 
     """
 
-    def __nonzero__():
-        """Test whether there are any annotations
-
-        Must be identical to __bool__()
-        """
-
-    def __bool__():  # Python 3 API.
-        """Test whether there are any annotations
-
-        Must be identical to __nonzero__()
-        """
+    def __bool__():
+        """Test whether there are any annotations."""
 
     def __getitem__(key):
         """Return the annotation stored under key.
