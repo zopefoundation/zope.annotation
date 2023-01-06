@@ -21,7 +21,7 @@ from zope.interface.verify import verifyObject
 from zope.annotation.interfaces import IAnnotations
 
 
-class AnnotationsTestBase(object):
+class AnnotationsTestBase:
     """Test the IAnnotations interface.
 
     The test case class expects the 'IAnnotations' implementer to be in

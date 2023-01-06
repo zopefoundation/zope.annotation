@@ -13,13 +13,8 @@
 ##############################################################################
 """Attribute Annotations implementation"""
 import logging
+from collections.abc import MutableMapping as DictMixin
 
-
-try:
-    from collections.abc import MutableMapping as DictMixin
-except ImportError:
-    # Python 2
-    from collections import MutableMapping as DictMixin
 
 try:
     from BTrees.OOBTree import OOBTree as _STORAGE
@@ -62,8 +57,6 @@ class AttributeAnnotations(DictMixin):
 
     def __bool__(self):
         return bool(getattr(self.obj, '__annotations__', 0))
-
-    __nonzero__ = __bool__
 
     def get(self, key, default=None):
         """See zope.annotation.interfaces.IAnnotations"""

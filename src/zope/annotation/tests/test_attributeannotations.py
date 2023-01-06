@@ -28,7 +28,7 @@ class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
         cleanup.setUp()
 
         @implementer(IAttributeAnnotatable)
-        class Dummy(object):
+        class Dummy:
             pass
 
         self.obj = Dummy()
@@ -39,7 +39,7 @@ class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
         cleanup.tearDown()
 
     def testInterfaceVerifies(self):
-        super(AttributeAnnotationsTest, self).testInterfaceVerifies()
+        super().testInterfaceVerifies()
         self.assertIs(self.obj, self.annotations.__parent__)
 
 
