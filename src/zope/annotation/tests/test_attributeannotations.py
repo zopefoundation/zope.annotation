@@ -49,6 +49,8 @@ class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
         annotations = AttributeAnnotations(obj)
         self.assertEqual(annotations["a"], 1)
         self.assertNotIn("__annotations__", od)
+        # again to check the case "no migration necessary"
+        annotations = AttributeAnnotations(obj)
 
     def testTypeHints(self):
 
