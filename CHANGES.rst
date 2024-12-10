@@ -5,7 +5,12 @@
 5.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Rename the annotations attribute from ``__annotations__`` to
+  ``_zope_annotations`` and provide migration code.
+  Introduce the optional callback ``notify_object_changed``
+  into ``attribute.AttributeAnnotations`` to notify
+  object changes to interested observers (e.g. ``plone.protect``).
+  See `#15 <https://github.com/zopefoundation/zope.annotation/issues/15>`_.
 
 
 5.0 (2023-03-27)

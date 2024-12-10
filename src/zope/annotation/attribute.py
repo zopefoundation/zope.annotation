@@ -30,6 +30,8 @@ from zope.annotation import interfaces
 
 _EMPTY_STORAGE = _STORAGE()
 
+ATTR = "_zope_annotations"
+
 
 @interface.implementer(interfaces.IAnnotations)
 @component.adapter(interfaces.IAttributeAnnotatable)
@@ -39,6 +41,10 @@ class AttributeAnnotations(DictMixin):
     Store annotations in the `__annotations__` attribute on a
     `IAttributeAnnotatable` object.
     """
+
+    # optional callback to notify that the object was changed
+    # can be used e.g. to inform ``plone.protect``
+    notify_object_changed = None
 
     # Yes, there's a lot of repetition of the `getattr` call,
     # but that turns out to be the most efficient for the ways
@@ -50,48 +56,61 @@ class AttributeAnnotations(DictMixin):
 
     def __init__(self, obj, context=None):
         self.obj = obj
+        if getattr(obj, ATTR, None) is None:
+            # try to migrate
+            ann = getattr(obj, "__annotations__", None)
+            if ann is not None \
+               and ann is not getattr(type(obj), "__annotations__", None):
+                # migrate
+                setattr(obj, ATTR, ann)
+                delattr(obj, "__annotations__")
+                if self.notify_object_changed is not None:
+                    self.notify_object_changed(obj)
 
     @property
     def __parent__(self):
         return self.obj
 
     def __bool__(self):
-        return bool(getattr(self.obj, '__annotations__', 0))
+        return bool(getattr(self.obj, ATTR, 0))
 
     def get(self, key, default=None):
         """See zope.annotation.interfaces.IAnnotations"""
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
+        annotations = getattr(self.obj, ATTR, _EMPTY_STORAGE)
         return annotations.get(key, default)
 
     def __getitem__(self, key):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
+        annotations = getattr(self.obj, ATTR, _EMPTY_STORAGE)
         return annotations[key]
 
     def keys(self):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
+        annotations = getattr(self.obj, ATTR, _EMPTY_STORAGE)
         return annotations.keys()
 
     def __iter__(self):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
+        annotations = getattr(self.obj, ATTR, _EMPTY_STORAGE)
         return iter(annotations)
 
     def __len__(self):
-        annotations = getattr(self.obj, '__annotations__', _EMPTY_STORAGE)
+        annotations = getattr(self.obj, ATTR, _EMPTY_STORAGE)
         return len(annotations)
 
     def __setitem__(self, key, value):
         """See zope.annotation.interfaces.IAnnotations"""
         try:
-            annotations = self.obj.__annotations__
+            annotations = getattr(self.obj, ATTR)
         except AttributeError:
-            annotations = self.obj.__annotations__ = _STORAGE()
+            annotations = _STORAGE()
+            setattr(self.obj, ATTR, annotations)
+            if self.notify_object_changed is not None:
+                self.notify_object_changed(self.obj)
 
         annotations[key] = value
 
     def __delitem__(self, key):
         """See zope.app.interfaces.annotation.IAnnotations"""
         try:
-            annotation = self.obj.__annotations__
+            annotation = getattr(self.obj, ATTR)
         except AttributeError:
             raise KeyError(key)
 
