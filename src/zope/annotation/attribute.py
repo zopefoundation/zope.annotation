@@ -14,6 +14,7 @@
 """Attribute Annotations implementation"""
 import logging
 from collections.abc import MutableMapping as DictMixin
+from weakref import WeakKeyDictionary
 
 
 try:
@@ -38,7 +39,7 @@ ATTR = "_zope_annotations"
 class AttributeAnnotations(DictMixin):
     """Store annotations on an object
 
-    Store annotations in the `__annotations__` attribute on a
+    Store annotations in the attribute given by ``ATTR`` on a
     `IAttributeAnnotatable` object.
     """
 
@@ -57,10 +58,9 @@ class AttributeAnnotations(DictMixin):
     def __init__(self, obj, context=None):
         self.obj = obj
         if getattr(obj, ATTR, None) is None:
-            # try to migrate
+            # check for migration
             ann = getattr(obj, "__annotations__", None)
-            if ann is not None \
-               and ann is not getattr(type(obj), "__annotations__", None):
+            if ann is not None and _check_ann(obj, ann):
                 # migrate
                 setattr(obj, ATTR, ann)
                 delattr(obj, "__annotations__")
@@ -115,3 +115,31 @@ class AttributeAnnotations(DictMixin):
             raise KeyError(key)
 
         del annotation[key]
+
+
+_with_annotations_slot = WeakKeyDictionary()
+
+
+def _check_ann(obj, ann):
+    """check whether *ann* is an annotation on *obj*.
+
+    We assume ``obj.__annotations__ is ann is not None``.
+    """
+    # *ann* can come from *obj* itself or its class of one of the base classes
+    # we check whether it comes from *obj* itself
+    try:
+        if obj.__dict__["__annotations__"] is ann:
+            return True
+    except (AttributeError, KeyError):
+        pass
+    # it does not come from *obj.__dict__"
+    # it may come from an ``__annotations__`` slot
+    oc = obj.__class__
+    if oc not in _with_annotations_slot:
+        _with_annotations_slot[oc] = \
+            any("__annotations__" in c.__dict__.get("__slots__", ())
+                for c in oc.__mro__)
+    # even without ``__annotations__`` slot, it may still
+    # come from *obj* (mediated by some weird descriptor)
+    # but we ignore this case
+    return _with_annotations_slot[oc]

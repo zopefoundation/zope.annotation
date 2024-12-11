@@ -93,6 +93,41 @@ class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
         ann = NotifyingAttributeAnnotations(obj)
         self.assertEqual(counter.c, 2)
 
+    def test_check_ann(self):
+        from zope.annotation.attribute import _check_ann
+
+        ann = dict(a=1)
+
+        class C:
+            pass
+
+        c = C()
+        c.__annotations__ = ann
+        self.assertTrue(_check_ann(c, ann))
+
+        class WithAnnotationsSlot:
+            __slots__ = "__annotations__",
+
+        c = WithAnnotationsSlot()
+        c.__annotations__ = ann
+        self.assertTrue(_check_ann(c, ann))
+
+        class WithTypeHints:
+            x: int
+
+        c = WithTypeHints()
+        self.assertFalse(_check_ann(c, c.__annotations__))
+
+        # the following checks are there only to make
+        # ``coverage`` happy
+        self.assertFalse(_check_ann(c, c.__annotations__))
+
+        c = C()
+        c.__annotations__ = dict()
+        # we violate ``_check_ann``'s precondition
+        # but it does not really depend on it
+        self.assertFalse(_check_ann(c, ann))
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
