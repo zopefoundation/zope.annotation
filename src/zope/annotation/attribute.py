@@ -18,7 +18,7 @@ from collections.abc import MutableMapping as DictMixin
 
 try:
     from BTrees.OOBTree import OOBTree as _STORAGE
-except ImportError:  # pragma: no cover
+except ModuleNotFoundError:  # pragma: no cover
     logging.getLogger(__name__).warning(
         'BTrees not available: falling back to dict for attribute storage')
     _STORAGE = dict
