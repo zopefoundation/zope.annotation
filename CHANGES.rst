@@ -2,7 +2,7 @@
  Changes
 =========
 
-5.1 (unreleased)
+5.2 (unreleased)
 ================
 
 - Rename the annotations attribute from ``__annotations__`` to
@@ -11,6 +11,13 @@
   into ``attribute.AttributeAnnotations`` to notify
   object changes to interested observers (e.g. ``plone.protect``).
   See `#15 <https://github.com/zopefoundation/zope.annotation/issues/15>`_.
+
+5.1 (2025-02-13)
+================
+
+- Add support for Python 3.12, 3.13.
+
+- Drop support for Python 3.7, 3.8.
 
 
 5.0 (2023-03-27)
