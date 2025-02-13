@@ -38,7 +38,7 @@ tests_require = [
 
 setup(
     name='zope.annotation',
-    version='5.1',
+    version='5.2.dev0',
     url='https://github.com/zopefoundation/zope.annotation',
     license='ZPL-2.1',
     description='Object annotation mechanism',
