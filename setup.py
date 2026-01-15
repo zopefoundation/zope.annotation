@@ -20,7 +20,6 @@
 """
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -33,12 +32,12 @@ tests_require = [
     'zope.component[zcml]',
     'zope.configuration',
     'zope.testing',
-    'zope.testrunner',
+    'zope.testrunner >= 6.4',
 ]
 
 setup(
     name='zope.annotation',
-    version='5.2.dev0',
+    version='6.1.dev0',
     url='https://github.com/zopefoundation/zope.annotation',
     license='ZPL-2.1',
     description='Object annotation mechanism',
@@ -67,9 +66,6 @@ setup(
         read('README.rst')
         + '\n\n' +
         read('CHANGES.rst')),
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['zope'],
     python_requires='>=3.9',
     install_requires=[
         'setuptools',

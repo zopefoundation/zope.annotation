@@ -2,7 +2,19 @@
  Changes
 =========
 
-5.2 (unreleased)
+6.1 (unreleased)
+================
+
+- Nothing changed yet.
+
+
+6.0 (2025-09-12)
+================
+
+- Replace ``pkg_resources`` namespace with PEP 420 native namespace.
+
+
+5.2 (2025-08-06)
 ================
 
 - Rename the annotations attribute from ``__annotations__`` to
