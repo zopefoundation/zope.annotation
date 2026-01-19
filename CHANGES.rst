@@ -19,10 +19,12 @@
 5.2 (2025-08-06)
 ================
 
-- Add support for Python 3.12, 3.13.
-
-- Drop support for Python 3.7, 3.8.
-
+- Rename the annotations attribute from ``__annotations__`` to
+  ``_zope_annotations`` and provide migration code.
+  Introduce the optional callback ``notify_object_changed``
+  into ``attribute.AttributeAnnotations`` to notify
+  object changes to interested observers (e.g. ``plone.protect``).
+  See `#15 <https://github.com/zopefoundation/zope.annotation/issues/15>`_.
 
 5.1 (2025-02-13)
 ================

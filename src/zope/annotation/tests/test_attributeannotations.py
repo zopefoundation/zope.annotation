@@ -13,17 +13,17 @@
 ##############################################################################
 import unittest
 
+from zope.interface import implementer
+
+from zope.annotation.attribute import AttributeAnnotations
+from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.annotation.tests.annotations import AnnotationsTestBase
 
 
 class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
 
     def setUp(self):
-        from zope.interface import implementer
         from zope.testing import cleanup
-
-        from zope.annotation.attribute import AttributeAnnotations
-        from zope.annotation.interfaces import IAttributeAnnotatable
 
         cleanup.setUp()
 
@@ -41,6 +41,92 @@ class AttributeAnnotationsTest(AnnotationsTestBase, unittest.TestCase):
     def testInterfaceVerifies(self):
         super().testInterfaceVerifies()
         self.assertIs(self.obj, self.annotations.__parent__)
+
+    def testMigration(self):
+        obj = self.obj
+        obj.__annotations__ = dict(a=1)
+        od = obj.__dict__
+        annotations = AttributeAnnotations(obj)
+        self.assertEqual(annotations["a"], 1)
+        self.assertNotIn("__annotations__", od)
+        # again to check the case "no migration necessary"
+        annotations = AttributeAnnotations(obj)
+
+    def testTypeHints(self):
+
+        @implementer(IAttributeAnnotatable)
+        class WithTypeHints:
+            a: int
+
+        obj = WithTypeHints()
+        hints = obj.__annotations__
+        annotations = AttributeAnnotations(obj)
+        self.assertFalse(annotations)
+        annotations["a"] = 1
+        self.assertEqual(annotations["a"], 1)
+        self.assertIs(obj.__annotations__, hints)
+
+    def test_notification(self):
+        from copy import copy
+
+        class Counter:
+            c = 0
+
+            def __call__(self, unused):
+                self.c += 1
+
+        counter = Counter()
+
+        class NotifyingAttributeAnnotations(AttributeAnnotations):
+            notify_object_changed = counter
+
+        # initial annotation
+        obj = copy(self.obj)
+        ann = NotifyingAttributeAnnotations(obj)
+        self.assertEqual(counter.c, 0)
+        ann["x"] = 1
+        self.assertEqual(counter.c, 1)
+
+        # migration
+        obj = copy(self.obj)
+        obj.__annotations__ = dict(a=1)
+        ann = NotifyingAttributeAnnotations(obj)
+        self.assertEqual(counter.c, 2)
+
+    def test_check_ann(self):
+        from zope.annotation.attribute import _check_ann
+
+        ann = dict(a=1)
+
+        class C:
+            pass
+
+        c = C()
+        c.__annotations__ = ann
+        self.assertTrue(_check_ann(c, ann))
+
+        class WithAnnotationsSlot:
+            __slots__ = "__annotations__",
+
+        c = WithAnnotationsSlot()
+        c.__annotations__ = ann
+        self.assertTrue(_check_ann(c, ann))
+
+        class WithTypeHints:
+            x: int
+
+        c = WithTypeHints()
+        self.assertFalse(_check_ann(c, c.__annotations__))
+
+        # the following checks are there only to make
+        # ``coverage`` happy
+        self.assertFalse(_check_ann(c, c.__annotations__))
+
+        c = C()
+        c.__annotations__ = dict()
+        # we violate ``_check_ann``'s precondition
+        # but it does not really depend on it
+        self.assertFalse(_check_ann(c, ann))
 
 
 def test_suite():
