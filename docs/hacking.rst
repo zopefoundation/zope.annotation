@@ -92,12 +92,12 @@ you can see how well the tests cover the code:
    ............
    Name                         Stmts   Miss  Cover   Missing
    ----------------------------------------------------------
-   zope.annotation                  4      0   100%   
-   zope.annotation.attribute       59      0   100%   
-   zope.annotation.factory         28      0   100%   
-   zope.annotation.interfaces      15      0   100%   
+   zope.annotation                  4      0   100%
+   zope.annotation.attribute       59      0   100%
+   zope.annotation.factory         28      0   100%
+   zope.annotation.interfaces      15      0   100%
    ----------------------------------------------------------
-   TOTAL                          106     35    67%   
+   TOTAL                          106     35    67%
    ----------------------------------------------------------------------
    Ran 12 tests in 2.166s
 
@@ -226,7 +226,7 @@ tool designed to run tests against multiple Python versions.  It creates
 a ``virtualenv`` for each configured version, installs the current package
 and configured dependencies into each ``virtualenv``, and then runs the
 configured commands.
-   
+
 :mod:`zope.annotation` configures the following :mod:`tox` environments via
 its ``tox.ini`` file:
 
