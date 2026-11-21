@@ -7,6 +7,79 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+
+[project]
+name = "zope.annotation"
+version = "6.1.dev0"
+description = "Object annotation mechanism"
+license = "ZPL-2.1"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development",
+]
+dynamic = ["readme"]
+requires-python = ">=3.11"
+authors = [
+    {name = "Zope Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+maintainers = [
+    {name = "Plone Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+dependencies = [
+    "setuptools",
+    "zope.interface",
+    "zope.component",
+    "zope.location",
+    "zope.proxy",
+]
+keywords = [
+    "zope",
+    "annotation",
+    "ZODB",
+    "zope3",
+    "ztk",
+]
+
+[project.optional-dependencies]
+btrees = [
+    "BTrees",
+    "persistent",
+]
+docs = [
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "zope.component[zcml]",
+    "zope.configuration",
+    "zope.testing",
+    "zope.testrunner >= 6.4",
+]
+test = [
+    "zope.component[zcml]",
+    "zope.configuration",
+    "zope.testing",
+    "zope.testrunner >= 6.4",
+]
+zcml = [
+    "zope.component[zcml]",
+    "zope.configuration",
+]
+
+[project.urls]
+Source = "https://github.com/zopefoundation/zope.annotation"
+
 [tool.coverage.run]
 branch = true
 source = ["zope.annotation"]
@@ -29,3 +102,6 @@ exclude_lines = [
 
 [tool.coverage.html]
 directory = "parts/htmlcov"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGES.rst"]}
