@@ -5,6 +5,11 @@
 6.1 (unreleased)
 ================
 
+- Drop the fossilized ``testing`` extra:  it depended on ``nose``, which
+  is uninstallable on Python >= 3.12.
+
+- Move package metadata from setup.py to pyproject.toml.
+
 - Add support for Python 3.15.
 
 - Drop support for Python 3.10.
