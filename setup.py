@@ -16,24 +16,8 @@
 # When developing and releasing this package, please follow the documented
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
-"""Setup for zope.annotation package
-"""
-import os
-
 from setuptools import setup
 
-
-def read(*rnames):
-    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
-        return f.read()
-
-
-tests_require = [
-    'zope.component[zcml]',
-    'zope.configuration',
-    'zope.testing',
-    'zope.testrunner >= 6.4',
-]
 
 # See pyproject.toml for package metadata
 setup()

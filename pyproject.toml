@@ -7,7 +7,6 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 name = "zope.annotation"
 version = "6.1.dev0"
@@ -105,3 +104,8 @@ directory = "parts/htmlcov"
 
 [tool.setuptools.dynamic]
 readme = {file = ["README.rst", "CHANGES.rst"]}
+
+[tool.zest-releaser]
+create-wheel = false
+extra-message = ""
+upload-pypi = false
