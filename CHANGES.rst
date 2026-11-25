@@ -2,7 +2,7 @@
  Changes
 =========
 
-6.1 (unreleased)
+6.1 (2026-11-25)
 ================
 
 - Drop the fossilized ``testing`` extra:  it depended on ``nose``, which
